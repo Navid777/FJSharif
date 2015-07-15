@@ -99,7 +99,6 @@ coverage.xml
 
 *.log
 
-FJSharif/local_settings.py
 *.pyc
 tempdb
 
