@@ -1,0 +1,78 @@
+{% extends 'surgeonBase.html' %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+        <div class="ui clearing segment">
+            <h2 class="ui header">
+                <i class="first aid icon"> </i>
+                <div class="content">
+                    Patients
+                    <div class="sub header">Click on a card to view detailed information.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <div class="ui three link cards">
+            {% for patient in patients%}
+                <a class="ui olive card" href="{% url 'view_patient' patient_id=patient.id %}">
+                    <div class="content">
+                        <img class="right floated ui tiny image" src="{{ patient|person_picture }}">
+                        <div class="header">{{ patient.user.get_full_name|title }}</div>
+                        <div class="meta">{{ patient.age|age }}</div>
+                        <div class="description">{{ patient|description }}</div>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="ui clearing segment">
+            <h2 class="ui header">
+                <i class="search icon"> </i>
+                <div class="content">
+                    Search
+                    <div class="sub header">Find a patient with his personal information.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <div class="ui teal compact message">
+                Leave the fields blank if you don't know the information.
+            </div>
+            <form class="ui form" method="post" action="">
+            {% csrf_token %}
+                <div class="three fields">
+                    {% for field in search_patient_form %}
+                        <div class="field">
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="ui teal right floated button" name="search_patient">
+                    <i class="search icon"></i>
+                    Search
+                </button>
+            </form>
+            {% if searched %}
+            <h3 class="ui dividing olive header">
+                Search Results
+            </h3>
+            <div class="content">
+                <div class="ui {% ifequal search_results.count 0 %}error{% else %}teal{% endifequal %} compact message">
+                    Search returned {{ search_results.count }} result{% ifequal search_results.count 1%}{% else %}s{% endifequal %}.
+                </div>
+                <div class="ui four link cards">
+                {% for patient in search_results %}
+                    <a class="ui olive card" href="{% url 'view_patient' patient_id=patient.id %}">
+                        <div class="content">
+                            <img class="right floated ui large image" src="{{ patient|person_picture }}">
+                            <div class="header">{{ patient.user.get_full_name|title }}</div>
+                            <div class="meta">{{ patient.age|age }}</div>
+                            <div class="description">{{ patient|description }}</div>
+                        </div>
+                    </a>
+                {% endfor  %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

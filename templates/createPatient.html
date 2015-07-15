@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="ui stackable centered two column grid container">
+	<div class="column standard">
+		<form class="ui {% if user_form.errors or patient_form.errors %} error {%endif%}form"  action="" method="post"  enctype="multipart/form-data">
+			{% csrf_token %}
+			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add{% endif %} a Patient</h2>
+			{% if user_form.non_field_errors%}
+			<div class="ui error message">
+			{% for error in user_form.non_field_errors%}
+				{{ error }}
+			{% endfor %}	
+			</div>
+			{% endif %}
+			{% if patient_form.non_field_errors%}
+			<div class="ui error message">
+			{% for error in patient_form.non_field_errors%}
+				{{ error }}
+			{% endfor %}	
+			</div>
+			{% endif %}
+			<h4 class="ui dividing header olive">User Information</h4>
+			<div class="field">
+				{% if user_form.username.errors %}
+				<div class="ui error message">
+					{% for error in user_form.username.errors%}
+						{{ error }}
+					{% endfor %}
+				</div>
+				{% endif %}
+				<label>Username</label>
+				{{ user_form.username }}
+			</div>
+
+			<div class="field">
+				{% if user_form.password1.errors or user_form.password2.errors %}
+				<div class="ui error message">
+					{% for error in user_form.password1.errors%}
+						<p>
+						{{ error }}
+						</p>
+					{% endfor %}
+					{% for error in user_form.password2.errors%}
+						<p>
+						{{ error }}
+						</p>
+					{% endfor %}
+				</div>
+				{% endif %}
+				<label>Password</label>
+                {% if edit %}
+                    <div class="ui message">
+                        Raw passwords are not stored, so there is no way to see this user's password, but you can change the password using <a href="#">this form</a>.
+                    </div>
+                {% else %}
+				<div class="two fields">
+					<div class="field">
+						{{ user_form.password1 }}
+					</div>
+					<div class="field">
+						{{ user_form.password2}}
+					</div>
+				</div>
+                {% endif %}
+			</div>
+			<h4 class="ui dividing header olive">Personal Information</h4>
+			<div class="field">
+				{% if user_form.first_name.errors or user_form.last_name.errors %}
+				<div class="ui error message">
+					{% for error in user_form.first_name.errors%}
+						<p>
+						{{ error }}
+						</p>
+					{% endfor %}
+					{% for error in user_form.last_name.errors%}
+						<p>
+						{{ error }}
+						</p>
+					{% endfor %}
+				</div>
+				{% endif %}
+				<label>Name</label>
+				<div class="two fields">
+					<div class="field">
+						{{ user_form.first_name }}
+					</div>
+					<div class="field">
+						{{ user_form.last_name }}
+					</div>
+				</div>
+			</div>
+			<div class="three fields">
+				<div class="field">
+					<label>Email</label>
+					{{ user_form.email }}
+					{% if user_form.email.errors %}
+					<div class="ui error message">
+						{% for error in user_form.email.errors%}
+							{{ error }}
+						{% endfor %}
+					</div>
+					{% endif %}
+					
+				</div>
+				<div class="field">
+					<label>National Code</label>
+					{{ patient_form.national_code }}
+					{% if patient_form.national_code.errors %}
+					<div class="ui error message">
+						{% for error in patient_form.national_code.errors%}
+							{{ error }}
+						{% endfor %}
+					</div>
+					{% endif %}
+					
+				</div>
+				<div class="field">
+					<label>Date of Birth</label>
+					{{ patient_form.DOB }}
+					{% if patient_form.DOB.errors %}
+					<div class="ui error message">
+						{% for error in patient_form.DOB.errors%}
+							{{ error }}
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+            <div class="field">
+                {% if patient_form.gender.errors %}
+                    <div class="ui error message">
+                        {% for error in patient_form.gender.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <label>Gender</label>
+                {{ patient_form.gender }}
+            </div>
+			<div class="field">
+				
+				{% if patient_form.description.errors %}
+				<div class="ui error message">
+					{% for error in patient_form.description.errors%}
+						{{ error }}
+					{% endfor %}
+				</div>
+				{% endif %}
+				<label>Description</label>
+				{{ patient_form.description }}
+			</div>
+			{{ patient_form.picture}}
+			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Patient">
+		</form>
+	</div>
+</div>
+{% endblock %}

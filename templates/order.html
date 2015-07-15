@@ -1,0 +1,136 @@
+{% extends 'surgeonBase.html' %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+            <div class="ui grid">
+            <div class="three wide column">
+                <a class="ui olive card" href="{% url 'view_patient' patient_id=order.patient.id %}">
+                    <div class="content">
+                        <img class="right floated ui large image" src="{{ order.patient|person_picture }}">
+                        <div class="header">{{ order.patient.user.get_full_name|title }}</div>
+                        <div class="meta">{{ order.patient.age|age }}</div>
+                        <div class="description">{{ order.patient|description }}</div>
+                    </div>
+                </a>
+            </div>
+            <div class="thirteen wide column">
+                <canvas id="3d-canvas" style="height:500px; width: 100%; background-color: darkgrey; margin:0;"></canvas>
+            </div>
+        </div>
+            <h3 class="ui dividing header">
+                Alignment Parameters
+            </h3>
+            <div class="ui six link cards" style="margin-top:10px;">
+                    {% for alignment_parameter in alignment_parameters %}
+                        <div class="ui olive card alignment" data-id="{{ alignment_parameter.name }}">
+                            <div class="ui image">
+                              <img src="{{ alignment_parameter|picture }}">
+                            </div>
+                            <div class="content">
+                              <div class="header">{{ alignment_parameter.name|title }}</div>
+                              <div class="meta">
+                                Type icon
+                              </div>
+                              <div class="description">
+                                  <div style="margin-bottom: 10px;">
+                                      <label class="ui  small {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label">
+                                          Left Value
+                                        <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                                      </label>
+
+                                  </div>
+                                  <div>
+                                      <label class="ui small {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label">
+                                          Right Value
+                                      <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                                      </label>
+                                  </div>
+                                {{ alignment_parameter.description}}
+                              </div>
+                            </div>
+                          </div>
+                    {% endfor  %}
+            </div>
+    </div>
+    {% for alignment_parameter in alignment_parameters %}
+        <div class="ui modal" data-id="{{ alignment_parameter.name }}">
+        <i class="close icon"></i>
+        <div class="ui header">{{ alignment_parameter.name }}</div>
+        <div class="content">
+            {% ifequal alignment_parameter.direction 'V' %}
+            <div class="ui two cards">
+                <div class="card">
+                    <div class="ui image">
+                        <img src="{% alignment_parameter_picture type='L' parameter_name=alignment_parameter.name order=order %}" style="height:400px; width:auto; margin:0 auto;"/>
+                    </div>
+                    <div class="content">
+                        <div class="header">Left</div>
+                        <div class="green meta">Min:{{ alignment_parameter.min_value }}</div>
+                        <div class="meta">Max: {{ alignment_parameter.max_value }}</div>
+                        <div class="description">
+                            <label class="ui {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ui large image">
+                        <img src="{% alignment_parameter_picture type='R' parameter_name=alignment_parameter.name order=order %}" style="height:400px; width:auto; margin:0 auto;"/>
+                    </div>
+                    <div class="content bottom aligned">
+                        <div class="header">Right</div>
+                        <div class="green meta">Min:{{ alignment_parameter.min_value }}</div>
+                        <div class="meta">Max: {{ alignment_parameter.max_value }}</div>
+                        <div class="description">
+                            <label class="ui {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="ui segments">
+                    <div class="segment">
+                        <div class="ui image" style="width: 70%; padding:10px; display:inline-block;">
+                            <img src="{% alignment_parameter_picture type='L' parameter_name=alignment_parameter.name order=order %}"  style="width:100%; height:auto;"/>
+                        </div>
+                        <div style="width:25%; display:inline-block;" class="ui segment">
+                            <div class="ui dividing header">Left</div>
+                            <div class="ui meta">Min: {{ alignment_parameter.min_value }}</div>
+                            <div class="ui meta">Max: {{ alignment_parameter.max_value }}</div>
+                            <label class="ui large {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label" style="margin-top:10px; margin-left:0;">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="segment">
+                        <div class="ui image" style="width: 70%; padding:10px; display:inline-block;">
+                            <img src="{% alignment_parameter_picture type='R' parameter_name=alignment_parameter.name order=order %}"  style="width:100%; height:auto;"/>
+                        </div>
+                        <div style="width:25%; display:inline-block;" class="ui segment">
+                            <div class="ui dividing header">Right</div>
+                            <div class="ui meta">Min: {{ alignment_parameter.min_value }}</div>
+                            <div class="ui meta">Max: {{ alignment_parameter.max_value }}</div>
+                            <label class="ui large {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label" style="margin-top:10px; margin-left:0;">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            {% endifequal %}
+        </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

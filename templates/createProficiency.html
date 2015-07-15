@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="ui stackable centered two column grid container">
+	<div class="column standard">		
+		<form class="ui {% if form.errors %} error {%endif%} form"  action="" method="post"  enctype="multipart/form-data">
+			{% csrf_token %}
+			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add a{% endif %} Proficiency</h2>
+			{% if form.non_field_errors%}
+				<div class="ui error message">
+				{% for error in form.non_field_errors%}
+					{{ error }}
+				{% endfor %}	
+				</div>
+			{% endif %}
+			{% for field in form%}
+			<div class="field">
+				{% if field.errors%}
+				<div class="ui error message">
+					{% for error in field.errors %}
+						{{ error }}
+					{% endfor %}
+				</div>
+				{% endif %}
+				<label>{{field.label}}</label>
+				{{ field }}
+			</div>
+			{% endfor %}
+			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Proficiency">
+		</form>
+	</div>
+</div>
+{% endblock %}

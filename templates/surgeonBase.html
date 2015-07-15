@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load filters %}
+{% block page_header %}
+    <nav class="ui inverted teal clearing segment" style="border-radius: 0;">
+        <div class="ui divided horizontal inverted tiny middle aligned link list">
+            <a class="active item">
+                <img class="ui avatar image" src="{{ surgeon|picture }}">
+                <div class="content">
+                  <div class="header">{{ surgeon.user.get_full_name|title }}</div>
+                  {{ surgeon.proficiency.proficient_title|title }}
+                </div>
+            </a>
+            <a class="icon item" href="{% url 'home' %}">
+                Home
+            </a>
+            <a class="item">
+                Profile
+            </a>
+            <a class="item">
+                Logout
+            </a>
+
+
+        </div>
+    </nav>
+{% endblock %}
