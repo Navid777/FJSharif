@@ -101,6 +101,7 @@ coverage.xml
 
 FJSharif/local_settings.py
 *.pyc
+tempdb
 
 
 # Sphinx documentation
