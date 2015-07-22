@@ -73,6 +73,7 @@ class Patient(models.Model):
     
 class Report(models.Model):
     name = models.CharField(max_length=300)
+    x_ray = models.ImageField(null=True, blank=True, upload_to='X-Ray/')
     
     def __unicode__(self):
         return self.name

@@ -1,0 +1,12 @@
+{
+  "vertices":[
+    {% for vertex in vertices %}
+    {{ vertex }}
+    {% if not forloop.last %}
+    ,
+    {% endif %}
+    {% endfor %}
+  ],
+  "faces":[]
+
+}

@@ -1,0 +1,19 @@
+{% extends 'surgeonBase.html' %}
+{% load filters %}
+
+{% block body %}
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="three wide column">
+                <a class="ui olive card" href="{% url 'view_patient' patient_id=patient.id %}">
+                    <div class="content">
+                        <img class="right floated ui large image" src="{{ patient|person_picture }}">
+                        <div class="header">{{ patient.user.get_full_name|title }}</div>
+                        <div class="meta">{{ patient.age|age }}</div>
+                        <div class="description">{{ patient|description }}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

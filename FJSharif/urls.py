@@ -33,7 +33,8 @@ urlpatterns = [
     url(r'^edit/staff/(?P<staff_id>\d+)$', views.edit_staff),
     url(r'^home$', views.home, name='home'),
     url(r'^view/patient/(?P<patient_id>\d+)$', views.view_patient, name='view_patient'),
-    url(r'^view/order/(?P<order_id>\d+)$', views.view_order, name='view_order')
+    url(r'^view/order/(?P<order_id>\d+)$', views.view_order, name='view_order'),
+    url(r'^test$', views.test),
 ]
 
 if settings.DEBUG:
