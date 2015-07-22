@@ -102,7 +102,7 @@ coverage.xml
 *.pyc
 tempdb
 FJSharif/local_settings.py
-
+media/
 
 # Sphinx documentation
 
