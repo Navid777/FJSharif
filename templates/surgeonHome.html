@@ -2,29 +2,8 @@
 {% load filters %}
 {% block body %}
     <div class="ui container">
-        <div class="ui clearing segment">
-            <h2 class="ui header">
-                <i class="first aid icon"> </i>
-                <div class="content">
-                    Patients
-                    <div class="sub header">Click on a card to view detailed information.</div>
-                </div>
-            </h2>
-            <div class="ui divider"></div>
-            <div class="ui three link cards">
-            {% for patient in patients%}
-                <a class="ui olive card" href="{% url 'view_patient' patient_id=patient.id %}">
-                    <div class="content">
-                        <img class="right floated ui tiny image" src="{{ patient|person_picture }}">
-                        <div class="header">{{ patient.user.get_full_name|title }}</div>
-                        <div class="meta">{{ patient.age|age }}</div>
-                        <div class="description">{{ patient|description }}</div>
-                    </div>
-                </a>
-            {% endfor %}
-            </div>
-        </div>
-        <div class="ui clearing segment">
+
+        <div class="ui clearing olive segment">
             <h2 class="ui header">
                 <i class="search icon"> </i>
                 <div class="content">
@@ -74,5 +53,27 @@
             </div>
             {% endif %}
         </div>
-    </div>
+
+        <div class="ui clearing olive segment">
+            <h2 class="ui header">
+                <i class="first aid icon"> </i>
+                <div class="content">
+                    Patients
+                    <div class="sub header">Click on a card to view detailed information.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <div class="ui three link cards">
+            {% for patient in patients%}
+                <a class="ui olive card" href="{% url 'view_patient' patient_id=patient.id %}">
+                    <div class="content">
+                        <img class="right floated ui tiny image" src="{{ patient|person_picture }}">
+                        <div class="header">{{ patient.user.get_full_name|title }}</div>
+                        <div class="meta">{{ patient.age|age }}</div>
+                        <div class="description">{{ patient|description }}</div>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+        </div></div>
 {% endblock %}

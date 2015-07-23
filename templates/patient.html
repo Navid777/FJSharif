@@ -14,6 +14,37 @@
                     </div>
                 </a>
             </div>
+            <div class="thirteen wide column">
+                <h2 class="ui olive header">Orders</h2>
+                <div class="ui divider"></div>
+                {% for order in orders %}
+                    <a class="ui fluid teal card" href="{% url 'view_order' order_id=order.id %}">
+                        <div class="content">
+                            <div class="header">
+                                Order {{ forloop.counter }}
+                            </div>
+                            <div class="meta">
+                                {{ order | object_date }}
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="description">
+                                <div class="ui">
+                                    <strong>Patient: </strong>{{ order.patient.user.get_full_name | title }}
+                                </div>
+                                <div class="ui">
+                                    <strong>Surgeon: </strong>{{ order.surgeon.user.get_full_name | title }}
+                                </div>
+                                <div class="ui">
+                                    <h5>Primary Diagnosis: </h5>
+                                    <div class="ui  message">
+                                        {{ order | diagnosis }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

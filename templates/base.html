@@ -14,10 +14,13 @@
 	<link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
 	{% block css %}
 	{% endblock %}
+
 	<body>
         {% block page_header %}
         {% endblock %}
 		{% block body %}
 		{% endblock %}
+        {% block js %}
+        {% endblock %}
 	</body>
 </html>

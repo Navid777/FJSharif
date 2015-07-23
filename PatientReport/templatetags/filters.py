@@ -22,6 +22,13 @@ def description(person):
     return 'No description.'
 
 
+@register.filter(name='diagnosis')
+def diagnosis(order):
+    if order.primary_diagnosis:
+        return order.primary_diagnosis
+    return 'N/A!'
+
+
 @register.filter(name='person_picture')
 def person_picture(person):
     if person.picture:
@@ -29,6 +36,18 @@ def person_picture(person):
     elif person.gender == 'F':
         return MEDIA_URL+'images/avatar/female_person.jpg'
     return MEDIA_URL+'images/avatar/male_person.jpg'
+
+
+@register.filter
+def object_date(object):
+    try:
+        date = object.date
+        if date:
+            return date
+        else:
+            return 'Unknown Date!'
+    except Exception:
+        return 'Unknown Date!'
 
 
 @register.filter(name='picture')
@@ -86,4 +105,7 @@ def alignment_parameter_status(**kwargs):
             else:
                 return 'Normal.'
     return 'N/A'
+
+
+
 

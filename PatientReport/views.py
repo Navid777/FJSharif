@@ -156,6 +156,7 @@ def home(request):
         pass
     return HttpResponseRedirect(reverse('login'))
 
+
 def test(request):
     return render(request, 'test3d.html')
 
@@ -163,7 +164,7 @@ def test(request):
 @login_required
 def surgeon_home(request, surgeon_id):
     surgeon = Surgeon.objects.get(id=surgeon_id)
-    patients = Patient.objects.filter(order__surgeon=surgeon)
+    patients = Patient.objects.filter(order__surgeon=surgeon).distinct()
     search_patient_form = SearchPatientForm()
     search_results = None
     searched = False
@@ -190,7 +191,7 @@ def view_patient(request, patient_id):
         orders = Order.objects.filter(patient=patient, surgeon=surgeon)
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('home'))
-    if orders.count() == 5:
+    if orders.count() == 1:
         return HttpResponseRedirect(reverse('view_order', args=[orders[0].id]))
     else:
         return render(request, 'patient.html', {'patient': patient, 'orders': orders})

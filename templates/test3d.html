@@ -46,11 +46,11 @@
 			animate();
 
 			function init() {
-				var WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+				var WIDTH = document.getElementById('3d-canvas').innerWidth, HEIGHT = document.getElementById('3d-canvas').innerHeight;
 				
 				renderer = new THREE.WebGLRenderer({antialias:true});
 				renderer.setSize(WIDTH, HEIGHT);
-				document.body.appendChild(renderer.domElement);
+                document.getElementById('3d-canvas').appendChild(renderer.domElement);
 
 				// camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
                 camera = new THREE.OrthographicCamera( - WIDTH / 2, WIDTH / 2, HEIGHT / 2, -HEIGHT / 2, 0.1, 20000 );
@@ -89,7 +89,7 @@
                 var material = new THREE.MeshPhongMaterial( { color: 0xffff00, specular: 0xffff00, shininess: 20 } );
                 
                 var loader = new THREE.STLLoader();
-				loader.load('http://164.138.21.154/media/stl/MOHAMMAD_AKBAR_L3.stl', function ( geometry ) {
+				loader.load('{{ MEDIA_URL }}stl/MOHAMMAD_AKBAR_L3.stl', function ( geometry ) {
 					var mesh = new THREE.Mesh( geometry, material );
 
 					mesh.castShadow = true;
