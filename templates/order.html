@@ -86,8 +86,8 @@
 
             var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
-            {% if order.pelvic %}
-            Load_and_Add_STL('{{ order.report.pelvic.url }}','Pelvic');
+            {% if order.pelvis %}
+            Load_and_Add_STL('{{ order.report.pelvis.url }}','Pelvic');
             {% endif %}
             {% if order.right_femur%}
             Load_and_Add_STL('{{ order.right_femur.url }}','Right_Femur');
@@ -114,15 +114,15 @@
             Load_and_Add_STL('{{ order.left_patella.url }}','Left_Patella');
             {% endif %}
 
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-400,0,0); Limbs.Pelvic = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-300,0,0); Limbs.Right_Femur = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-200,0,0); Limbs.Right_Tibia = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-100,0,0); Limbs.Right_Fibula = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(0,0,0)  ; Limbs.Right_Patella = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(100,0,0); Limbs.Left_Femur = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(200,0,0); Limbs.Left_Tibia = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(300,0,0); Limbs.Left_Fibula = mesh;
-            var mesh = new THREE.Mesh( geometry, material );mesh.position.set(400,0,0); Limbs.Left_Patella = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-400,0,0); Limbs.Pelvic = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-300,0,0); Limbs.Right_Femur = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-200,0,0); Limbs.Right_Tibia = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-100,0,0); Limbs.Right_Fibula = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(0,0,0)  ; Limbs.Right_Patella = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(100,0,0); Limbs.Left_Femur = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(200,0,0); Limbs.Left_Tibia = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(300,0,0); Limbs.Left_Fibula = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(400,0,0); Limbs.Left_Patella = mesh;
 
             function Load_and_Add_STL(url,Limb){
                 loader.load(url, function ( geometry ) {
@@ -146,25 +146,53 @@
             LimbsController.gui = new dat.GUI({width: 200});
             document.getElementById("3d-controls").appendChild(LimbsController.gui.domElement);
 
+            {% if order.pelvis %}
             var ShowPelvic = 		LimbsController.gui.addFolder( 'Pelvic' );
+            {% endif %}
+            {% if order.right_femur or order.right_fibula or order.right_patella or order.right_tibia %}
             var ShowRightLimbs = 	LimbsController.gui.addFolder( 'Right Leg' );
+            {% endif %}
+            {% if order.left_femur or order.left_fibula or order.left_tibia or order.left_patella %}
             var ShowLeftLimbs = 	LimbsController.gui.addFolder( 'Left Leg' );
+            {% endif %}
 
+            {% if order.pelvic %}
             ShowPelvic.add( LimbsController, "Pelvic" ).onChange(function(value) {UpdateLimbStatus();});
-
+            {% endif %}
+            {% if order.right_femur %}
             ShowRightLimbs.add( LimbsController, "Right_Femur" )	.name("Right Femur").onChange(function(value) {UpdateLimbStatus();});
+            {% endif %}
+            {% if order.right_tibia %}
             ShowRightLimbs.add( LimbsController, "Right_Tibia" )	.name("Right Tibia").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.right_fibula %}
             ShowRightLimbs.add( LimbsController, "Right_Fibula" )	.name("Right Fibula").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.right_patella %}
             ShowRightLimbs.add( LimbsController, "Right_Patella" )	.name("Right Patella").onChange(function(value) {UpdateLimbStatus();});;
-
+            {% endif %}
+            {% if order.left_femur %}
             ShowLeftLimbs.add( LimbsController, "Left_Femur" )		.name("Left Femur").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_tibia %}
             ShowLeftLimbs.add( LimbsController, "Left_Tibia" )		.name("Left Tibia").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_fibula %}
             ShowLeftLimbs.add( LimbsController, "Left_Fibula" )		.name("Left Fibula").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_patella %}
             ShowLeftLimbs.add( LimbsController, "Left_Patella" )	.name("Left Patella").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
 
+            {% if order.pelvic %}
             ShowPelvic.open();
+            {% endif %}
+            {% if order.right_femur or order.right_fibula or order.right_patella or order.right_tibia %}
             ShowRightLimbs.open();
+            {% endif %}
+            {% if order.left_femur or order.left_fibula or order.left_tibia or order.left_patella %}
             ShowLeftLimbs.open();
+            {% endif %}
         }//end function
 
     </script>
