@@ -2,7 +2,7 @@
 {% load filters %}
 {% block body %}
     <div class="ui container">
-        <div class="ui clearing olive segment">
+        <div class="ui clearing olive segment" style="background-color: #f3f3f3;">
             <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_surgeon' %}">
                 <i class="ui plus icon"></i>
                 New Surgeon
@@ -15,9 +15,6 @@
                 </div>
             </h2>
             <div class="ui divider"></div>
-            <div class="ui teal compact message">
-                Leave the fields blank if you don't know the information.
-            </div>
             <form class="ui form" method="post" action="">
             {% csrf_token %}
                 <div class="three fields">
@@ -75,7 +72,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="ui clearing olive segment">
+        <div style="background-color: #f3f3f3; margin-top:50px;" class="ui clearing olive segment">
             <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_surgeon' %}">
                 <i class="ui plus icon"></i>
                 New Surgeon

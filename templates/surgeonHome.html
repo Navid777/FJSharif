@@ -3,7 +3,7 @@
 {% block body %}
     <div class="ui container">
 
-        <div class="ui clearing olive segment">
+        <div class="ui clearing olive segment" style="background-color: #f3f3f3;">
             <h2 class="ui header">
                 <i class="search icon"> </i>
                 <div class="content">
@@ -12,9 +12,6 @@
                 </div>
             </h2>
             <div class="ui divider"></div>
-            <div class="ui teal compact message">
-                Leave the fields blank if you don't know the information.
-            </div>
             <form class="ui form" method="post" action="">
             {% csrf_token %}
                 <div class="three fields">
@@ -54,7 +51,7 @@
             {% endif %}
         </div>
 
-        <div class="ui clearing olive segment">
+        <div class="ui clearing olive segment" style="background-color: #f3f3f3; margin-top: 50px;">
             <h2 class="ui header">
                 <i class="first aid icon"> </i>
                 <div class="content">
