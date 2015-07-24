@@ -208,9 +208,7 @@ def patient_home(request):
 
 @login_required
 def staff_home(request):
-    patient = Patient.objects.get(id=1)
-    orders = Order.objects.filter(patient=patient)
-    return render(request, 'patient.html', {'patient': patient, 'orders': orders})
+    return render(request, 'staffHome.html')
 
 
 @login_required
@@ -274,7 +272,6 @@ def manage_surgeons(request):
                     user__last_name__contains=search_surgeon_form.cleaned_data['last_name'],
                     )
                 print search_surgeon_form.cleaned_data['gender']
-                print 'hi'
                 print search_surgeon_form.cleaned_data['proficiency']
                 if search_surgeon_form.cleaned_data['gender'] != '':
                     search_results = search_results.filter(gender=search_surgeon_form.cleaned_data['gender'])

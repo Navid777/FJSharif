@@ -1,0 +1,88 @@
+{% extends template_base %}
+
+{% block body %}
+    <div class="ui container">
+        <div class="ui four link cards">
+            <div class="teal card">
+                <a class="content" href="{% url 'manage_surgeons' %}">
+                    <i class="right floated large doctor teal icon"></i>
+                    <div class="header">
+                        Surgeons
+                    </div>
+                    <div class="meta">
+                        Surgeons' Section
+                    </div>
+                    <div class="description">
+                        Create new surgeons and edit surgeons' profiles in this section.
+                    </div>
+                </a>
+                <div class="extra content">
+                    <a class="ui right floated mini blue button" href="{% url 'create_surgeon' %}">
+                        <i class="plus icon"></i>
+                        New Surgeon
+                    </a>
+                </div>
+            </div>
+            <div class="blue card">
+                <a class="content" href="{% url 'manage_patients' %}">
+                    <i class="right floated large handicap blue icon"></i>
+                    <div class="header">
+                        Patients
+                    </div>
+                    <div class="meta">
+                        Patients' Section
+                    </div>
+                    <div class="description">
+                        Create new patients, edit patients' profiles and create orders for patients in this section.
+                    </div>
+                </a>
+                <div class="extra content">
+                    <a class="ui right floated mini blue button" href="{% url 'create_patient' %}">
+                        <i class="plus icon"></i>
+                        New Patient
+                    </a>
+                </div>
+            </div>
+            <div class="violet card" >
+                <a class="content" href="{% url 'manage_proficiencies' %}">
+                    <i class="right floated large first aid violet icon"></i>
+                    <div class="header">
+                        Proficiencies
+                    </div>
+                    <div class="meta">
+                        Proficiencies' Section
+                    </div>
+                    <div class="description">
+                        Create new proficiencies and edit proficiencies in this section.
+                    </div>
+                </a>
+                <div class="extra content">
+                    <a class="ui right floated mini blue button" href="{% url 'create_proficiency' %}">
+                        <i class="plus icon"></i>
+                        New Proficiency
+                    </a>
+                </div>
+            </div>
+            <div class="purple card" >
+                <a class="content" href="{% url 'manage_alignment_parameter_names' %}">
+                    <i class="right floated large options purple icon"></i>
+                    <div class="header">
+                        Alignment Parameters
+                    </div>
+                    <div class="meta">
+                        Alignment Parameters' Section
+                    </div>
+                    <div class="description">
+                        Create new alignment parameters and edit alignment parameters in this section.
+                    </div>
+                </a>
+                <div class="extra content">
+                    <a class="ui right floated mini blue button" href="{% url 'create_alignment_parameter_name' %}">
+                        <i class="plus icon"></i>
+                        New Alignment Parameter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
