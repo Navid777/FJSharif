@@ -119,24 +119,24 @@
       <file leaf-file-name="order.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30813953" vertical-offset="2765" max-vertical-offset="5338">
-              <caret line="172" column="18" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
+            <state vertical-scroll-proportion="1.2063493" vertical-offset="1541" max-vertical-offset="5338">
+              <caret line="113" column="59" selection-start-line="113" selection-start-column="59" selection-end-line="113" selection-end-column="59" />
               <folding>
-                <element signature="e#8876#8903#0#HTML" expanded="true" />
-                <element signature="e#8945#9001#0#HTML" expanded="true" />
-                <element signature="e#9051#9119#0#HTML" expanded="true" />
-                <element signature="e#9326#9350#0#HTML" expanded="true" />
-                <element signature="e#10057#10085#0#HTML" expanded="true" />
-                <element signature="e#11860#11908#0#HTML" expanded="true" />
-                <element signature="e#13087#13135#0#HTML" expanded="true" />
-                <element signature="e#14288#14343#0#HTML" expanded="true" />
-                <element signature="e#14480#14512#0#HTML" expanded="true" />
-                <element signature="e#14575#14615#0#HTML" expanded="true" />
-                <element signature="e#15050#15089#0#HTML" expanded="true" />
-                <element signature="e#15615#15670#0#HTML" expanded="true" />
-                <element signature="e#15807#15839#0#HTML" expanded="true" />
-                <element signature="e#15902#15942#0#HTML" expanded="true" />
-                <element signature="e#16378#16417#0#HTML" expanded="true" />
+                <element signature="e#8894#8921#0#HTML" expanded="true" />
+                <element signature="e#8963#9019#0#HTML" expanded="true" />
+                <element signature="e#9069#9137#0#HTML" expanded="true" />
+                <element signature="e#9344#9368#0#HTML" expanded="true" />
+                <element signature="e#10075#10103#0#HTML" expanded="true" />
+                <element signature="e#11878#11926#0#HTML" expanded="true" />
+                <element signature="e#13105#13153#0#HTML" expanded="true" />
+                <element signature="e#14306#14361#0#HTML" expanded="true" />
+                <element signature="e#14498#14530#0#HTML" expanded="true" />
+                <element signature="e#14593#14633#0#HTML" expanded="true" />
+                <element signature="e#15068#15107#0#HTML" expanded="true" />
+                <element signature="e#15633#15688#0#HTML" expanded="true" />
+                <element signature="e#15825#15857#0#HTML" expanded="true" />
+                <element signature="e#15920#15960#0#HTML" expanded="true" />
+                <element signature="e#16396#16435#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -594,11 +594,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25718608" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25718608" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -607,7 +607,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -618,28 +618,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25718608" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -966,9 +944,8 @@
         <state vertical-scroll-proportion="0.19767442" vertical-offset="0" max-vertical-offset="344">
           <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="81" />
           <folding>
-            <element signature="e#142#176#0#HTML" expanded="true" />
             <element signature="e#103#3374#0#HTML" expanded="false" />
-            <element signature="e#3388#3439#0#HTML" expanded="true" />
+            <element signature="e#3388#3439#0#HTML" expanded="false" />
             <element signature="e#3383#5451#0#HTML" expanded="false" />
           </folding>
         </state>
@@ -987,8 +964,8 @@
         <state vertical-scroll-proportion="-7.1538463" vertical-offset="86" max-vertical-offset="2125">
           <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
           <folding>
-            <element signature="e#142#176#0#HTML" expanded="true" />
-            <element signature="e#3401#3453#0#HTML" expanded="true" />
+            <element signature="e#142#176#0#HTML" expanded="false" />
+            <element signature="e#3401#3453#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1081,24 +1058,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30813953" vertical-offset="2765" max-vertical-offset="5338">
-          <caret line="172" column="18" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
+        <state vertical-scroll-proportion="1.2063493" vertical-offset="1541" max-vertical-offset="5338">
+          <caret line="113" column="59" selection-start-line="113" selection-start-column="59" selection-end-line="113" selection-end-column="59" />
           <folding>
-            <element signature="e#8876#8903#0#HTML" expanded="true" />
-            <element signature="e#8945#9001#0#HTML" expanded="true" />
-            <element signature="e#9051#9119#0#HTML" expanded="true" />
-            <element signature="e#9326#9350#0#HTML" expanded="true" />
-            <element signature="e#10057#10085#0#HTML" expanded="true" />
-            <element signature="e#11860#11908#0#HTML" expanded="true" />
-            <element signature="e#13087#13135#0#HTML" expanded="true" />
-            <element signature="e#14288#14343#0#HTML" expanded="true" />
-            <element signature="e#14480#14512#0#HTML" expanded="true" />
-            <element signature="e#14575#14615#0#HTML" expanded="true" />
-            <element signature="e#15050#15089#0#HTML" expanded="true" />
-            <element signature="e#15615#15670#0#HTML" expanded="true" />
-            <element signature="e#15807#15839#0#HTML" expanded="true" />
-            <element signature="e#15902#15942#0#HTML" expanded="true" />
-            <element signature="e#16378#16417#0#HTML" expanded="true" />
+            <element signature="e#8894#8921#0#HTML" expanded="true" />
+            <element signature="e#8963#9019#0#HTML" expanded="true" />
+            <element signature="e#9069#9137#0#HTML" expanded="true" />
+            <element signature="e#9344#9368#0#HTML" expanded="true" />
+            <element signature="e#10075#10103#0#HTML" expanded="true" />
+            <element signature="e#11878#11926#0#HTML" expanded="true" />
+            <element signature="e#13105#13153#0#HTML" expanded="true" />
+            <element signature="e#14306#14361#0#HTML" expanded="true" />
+            <element signature="e#14498#14530#0#HTML" expanded="true" />
+            <element signature="e#14593#14633#0#HTML" expanded="true" />
+            <element signature="e#15068#15107#0#HTML" expanded="true" />
+            <element signature="e#15633#15688#0#HTML" expanded="true" />
+            <element signature="e#15825#15857#0#HTML" expanded="true" />
+            <element signature="e#15920#15960#0#HTML" expanded="true" />
+            <element signature="e#16396#16435#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

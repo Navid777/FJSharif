@@ -87,31 +87,31 @@
             var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
             {% if order.pelvic %}
-            Load_and_Add_STL({{ order.report.pelvic.url }},'Pelvic');
+            Load_and_Add_STL('{{ order.report.pelvic.url }}','Pelvic');
             {% endif %}
             {% if order.right_femur%}
-            Load_and_Add_STL({{ order.right_femur.url }},'Right_Femur');
+            Load_and_Add_STL('{{ order.right_femur.url }}','Right_Femur');
             {% endif %}
             {% if  order.right_tibia %}
-            Load_and_Add_STL({{ order.right_tibia.url }},'Right_Tibia');
+            Load_and_Add_STL('{{ order.right_tibia.url }}','Right_Tibia');
             {% endif %}
             {% if  order.left_fibula %}
-            Load_and_Add_STL({{ order.left_fibula.url }},'Left_Fibula');
+            Load_and_Add_STL('{{ order.left_fibula.url }}','Left_Fibula');
             {% endif %}
             {% if order.right_patella %}
-            Load_and_Add_STL({{ order.right_patella.url }},'Right_Patella');
+            Load_and_Add_STL('{{ order.right_patella.url }}','Right_Patella');
             {% endif %}
             {% if order.left_femur %}
-            Load_and_Add_STL({{ order.left_femur.url }},'Left_Femur');
+            Load_and_Add_STL('{{ order.left_femur.url }}','Left_Femur');
             {% endif %}
             {% if order.left_tibia %}
-            Load_and_Add_STL({{ order.left_tibia.url }},'Left_Tibia');
+            Load_and_Add_STL('{{ order.left_tibia.url }}','Left_Tibia');
             {% endif %}
             {% if order.left_fibula %}
-            Load_and_Add_STL({{ order.left_fibula.url }},'Left_Fibula');
+            Load_and_Add_STL('{{ order.left_fibula.url }}','Left_Fibula');
             {% endif %}
             {% if order.left_patella %}
-            Load_and_Add_STL({{ order.left_patella.url }},'Left_Patella');
+            Load_and_Add_STL('{{ order.left_patella.url }}','Left_Patella');
             {% endif %}
 
             var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-400,0,0); Limbs.Pelvic = mesh;
