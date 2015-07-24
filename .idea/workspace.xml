@@ -119,24 +119,24 @@
       <file leaf-file-name="order.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7364341" vertical-offset="2918" max-vertical-offset="5814">
-              <caret line="194" column="20" selection-start-line="194" selection-start-column="20" selection-end-line="194" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.43992248" vertical-offset="1439" max-vertical-offset="5814">
+              <caret line="98" column="44" selection-start-line="98" selection-start-column="44" selection-end-line="98" selection-end-column="44" />
               <folding>
-                <element signature="e#10098#10125#0#HTML" expanded="true" />
-                <element signature="e#10167#10223#0#HTML" expanded="true" />
-                <element signature="e#10273#10341#0#HTML" expanded="true" />
-                <element signature="e#10548#10572#0#HTML" expanded="true" />
-                <element signature="e#11279#11307#0#HTML" expanded="true" />
-                <element signature="e#13082#13130#0#HTML" expanded="true" />
-                <element signature="e#14309#14357#0#HTML" expanded="true" />
-                <element signature="e#15510#15565#0#HTML" expanded="true" />
-                <element signature="e#15702#15734#0#HTML" expanded="true" />
-                <element signature="e#15797#15837#0#HTML" expanded="true" />
-                <element signature="e#16272#16311#0#HTML" expanded="true" />
-                <element signature="e#16837#16892#0#HTML" expanded="true" />
-                <element signature="e#17029#17061#0#HTML" expanded="true" />
-                <element signature="e#17124#17164#0#HTML" expanded="true" />
-                <element signature="e#17600#17639#0#HTML" expanded="true" />
+                <element signature="e#10099#10126#0#HTML" expanded="true" />
+                <element signature="e#10168#10224#0#HTML" expanded="true" />
+                <element signature="e#10274#10342#0#HTML" expanded="true" />
+                <element signature="e#10549#10573#0#HTML" expanded="true" />
+                <element signature="e#11280#11308#0#HTML" expanded="true" />
+                <element signature="e#13083#13131#0#HTML" expanded="true" />
+                <element signature="e#14310#14358#0#HTML" expanded="true" />
+                <element signature="e#15511#15566#0#HTML" expanded="true" />
+                <element signature="e#15703#15735#0#HTML" expanded="true" />
+                <element signature="e#15798#15838#0#HTML" expanded="true" />
+                <element signature="e#16273#16312#0#HTML" expanded="true" />
+                <element signature="e#16838#16893#0#HTML" expanded="true" />
+                <element signature="e#17030#17062#0#HTML" expanded="true" />
+                <element signature="e#17125#17165#0#HTML" expanded="true" />
+                <element signature="e#17601#17640#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1080,24 +1080,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7364341" vertical-offset="2918" max-vertical-offset="5814">
-          <caret line="194" column="20" selection-start-line="194" selection-start-column="20" selection-end-line="194" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.43992248" vertical-offset="1439" max-vertical-offset="5814">
+          <caret line="98" column="44" selection-start-line="98" selection-start-column="44" selection-end-line="98" selection-end-column="44" />
           <folding>
-            <element signature="e#10098#10125#0#HTML" expanded="true" />
-            <element signature="e#10167#10223#0#HTML" expanded="true" />
-            <element signature="e#10273#10341#0#HTML" expanded="true" />
-            <element signature="e#10548#10572#0#HTML" expanded="true" />
-            <element signature="e#11279#11307#0#HTML" expanded="true" />
-            <element signature="e#13082#13130#0#HTML" expanded="true" />
-            <element signature="e#14309#14357#0#HTML" expanded="true" />
-            <element signature="e#15510#15565#0#HTML" expanded="true" />
-            <element signature="e#15702#15734#0#HTML" expanded="true" />
-            <element signature="e#15797#15837#0#HTML" expanded="true" />
-            <element signature="e#16272#16311#0#HTML" expanded="true" />
-            <element signature="e#16837#16892#0#HTML" expanded="true" />
-            <element signature="e#17029#17061#0#HTML" expanded="true" />
-            <element signature="e#17124#17164#0#HTML" expanded="true" />
-            <element signature="e#17600#17639#0#HTML" expanded="true" />
+            <element signature="e#10099#10126#0#HTML" expanded="true" />
+            <element signature="e#10168#10224#0#HTML" expanded="true" />
+            <element signature="e#10274#10342#0#HTML" expanded="true" />
+            <element signature="e#10549#10573#0#HTML" expanded="true" />
+            <element signature="e#11280#11308#0#HTML" expanded="true" />
+            <element signature="e#13083#13131#0#HTML" expanded="true" />
+            <element signature="e#14310#14358#0#HTML" expanded="true" />
+            <element signature="e#15511#15566#0#HTML" expanded="true" />
+            <element signature="e#15703#15735#0#HTML" expanded="true" />
+            <element signature="e#15798#15838#0#HTML" expanded="true" />
+            <element signature="e#16273#16312#0#HTML" expanded="true" />
+            <element signature="e#16838#16893#0#HTML" expanded="true" />
+            <element signature="e#17030#17062#0#HTML" expanded="true" />
+            <element signature="e#17125#17165#0#HTML" expanded="true" />
+            <element signature="e#17601#17640#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
