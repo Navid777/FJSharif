@@ -146,3 +146,16 @@ class SearchPatientForm(forms.Form):
         self.fields['national_code'].widget.attrs['placeholder'] = 'Enter the patient\'s national code'
 
 
+class SearchSurgeonForm(forms.Form):
+    first_name = forms.CharField(max_length=100, label="First Name", required=False)
+    last_name = forms.CharField(max_length=100, label="Last Name", required=False)
+    proficiency = forms.ModelChoiceField(queryset=Proficiency.objects.all(), required=False)
+    GENDERS = (('', '--------'), ('M', 'Male'), ('F', 'Female'))
+    gender = forms.ChoiceField(choices=GENDERS, required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(SearchSurgeonForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs['placeholder'] = 'Enter the patient\'s first name'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter the patient\'s last name'
+
+

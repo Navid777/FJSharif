@@ -1,0 +1,43 @@
+{% extends template_base %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+        <div class="ui clearing olive segment">
+            <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_proficiency' %}">
+                <i class="ui plus icon"></i>
+                New Proficiency
+            </a>
+            <h2 class="ui header">
+                <i class="first aid icon"> </i>
+                <div class="content">
+                    Edit Proficiencies
+                    <div class="sub header">Click on  the proficiency's name to edit.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <table class="ui blue sortable celled table">
+                <thead>
+                    <th>Proficiency</th>
+                    <th>Abbreviation</th>
+                    <th>Proficient's Title</th>
+                </thead>
+                <tbody>
+                    {% for proficiency in proficiencies %}
+                        <tr href="home">
+                            <td>
+                                <a class="" href="{% url 'edit_proficiency' proficiency_id=proficiency.id %}">
+                                    {{ proficiency.name }}
+                                </a>
+                            </td>
+                            <td>
+                               {{ proficiency.abbreviation }}
+                            </td>
+                            <td>
+                                {{ proficiency.proficient_title }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+{% endblock %}

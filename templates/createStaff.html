@@ -1,8 +1,25 @@
-{% extends 'base.html' %}
+{% extends template_base %}
+{% load filters %}
 
 {% block body%}
-<div class="ui stackable centered two column grid container">
-	<div class="column standard">
+<div class="ui stackable grid container">
+    {% if staff %}
+    <div class="three wide column">
+        <div class="ui olive card">
+            <div class="content">
+                <img class="right floated ui large image" src="{{ staff |person_picture }}">
+                <div class="header">{{ staff.user.get_full_name|title }}</div>
+                <div class="meta">{{ staff.position }}</div>
+                </div>
+            <div class="content">
+                <div class="description">
+                    <h5 class="ui header">Email</h5>{{ staff_user | email }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+	<div class="thirteen wide column standard">
 		<form class="ui {% if user_form.errors or staff_form.errors %} error {%endif%}form"  action="" method="post"  enctype="multipart/form-data">
 			{% csrf_token %}
 			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add a{% endif %} Staff</h2>
@@ -173,8 +190,21 @@
 					</div>
 				</div>
 			</div>
+            <div class="field">
+                <label>Profile Picture</label>
+                {% if staff_form.picture.errors %}
+				<div class="ui error message">
+					{% for error in staff_form.picture.errors%}
+						{{ error }}
+					{% endfor %}
+				</div>
+				{% endif %}
+                <div class="ui message">
+                    {{ staff_form.picture}}
+                </div>
+            </div>
 			
-			{{ staff_form.picture}}
+
 			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Staff">
 		</form>
 	</div>

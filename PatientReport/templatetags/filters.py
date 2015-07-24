@@ -29,6 +29,19 @@ def diagnosis(order):
     return 'N/A!'
 
 
+@register.filter(name='email')
+def email(person):
+    if person.user.email:
+        return person.user.email
+    return 'N/A!'
+
+@register.filter(name='address')
+def address(surgeon):
+    if surgeon.address:
+        return surgeon.address
+    return 'Unknown Address.'
+
+
 @register.filter(name='person_picture')
 def person_picture(person):
     if person.picture:

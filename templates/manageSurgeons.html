@@ -1,0 +1,123 @@
+{% extends template_base %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+        <div class="ui clearing olive segment">
+            <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_surgeon' %}">
+                <i class="ui plus icon"></i>
+                New Surgeon
+            </a>
+            <h2 class="ui header">
+                <i class="search icon"> </i>
+                <div class="content">
+                    Search
+                    <div class="sub header">Find a surgeon with his personal information.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <div class="ui teal compact message">
+                Leave the fields blank if you don't know the information.
+            </div>
+            <form class="ui form" method="post" action="">
+            {% csrf_token %}
+                <div class="three fields">
+                    {% for field in search_surgeon_form %}
+                        <div class="field">
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="ui teal right floated button" name="search_surgeon">
+                    <i class="search icon"></i>
+                    Search
+                </button>
+            </form>
+            {% if searched %}
+            <h3 class="ui dividing olive header">
+                Search Results
+            </h3>
+            <div class="content">
+                <div class="ui {% ifequal search_results.count 0 %}error{% else %}teal{% endifequal %} compact message">
+                    Search returned {{ search_results.count }} result{% ifequal search_results.count 1%}{% else %}s{% endifequal %}.
+                </div>
+                <table class="ui green celled table">
+                    <thead>
+                        <th>Surgeon</th>
+                        <th>Username</th>
+                        <th>National Code</th>
+                        <th>Gender</th>
+                    </thead>
+                    <tbody>
+                        {% for surgeon in search_results %}
+                            <tr>
+                                <td>
+                                    <a class="ui image header" href="{% url 'edit_surgeon' surgeon_id=surgeon.id %}">
+                                        <img src="{{ surgeon|person_picture }}" class="ui mini rounded image"/>
+                                        <div class="content">{{ surgeon.user.get_full_name|title }}
+                                            <div class="sub header">{{ surgeon.proficiency.proficient_title }}</div>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                   {{ surgeon.user.username }}
+                                </td>
+                                <td>
+                                    {{ surgeon.national_code }}
+                                </td>
+                                <td>
+                                    {{ surgeon.gender }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+        <div class="ui clearing olive segment">
+            <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_surgeon' %}">
+                <i class="ui plus icon"></i>
+                New Surgeon
+            </a>
+            <h2 class="ui header">
+                <i class="doctor icon"> </i>
+                <div class="content">
+                    Edit Surgeons
+                    <div class="sub header">Click on  the surgeon's name to edit.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <table class="ui blue sortable celled table">
+                <thead>
+                    <th>Surgeon</th>
+                    <th>Username</th>
+                    <th>National Code</th>
+                    <th>Gender</th>
+                </thead>
+                <tbody>
+                    {% for surgeon in surgeons %}
+                        <tr href="home">
+                            <td>
+                                <a class="ui image header" href="{% url 'edit_surgeon' surgeon_id=surgeon.id %}">
+                                    <img src="{{ surgeon|person_picture }}" class="ui mini rounded image"/>
+                                    <div class="content">{{ surgeon.user.get_full_name|title }}
+                                        <div class="sub header">{{ surgeon.proficiency.proficient_title }}</div>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                               {{ surgeon.user.username }}
+                            </td>
+                            <td>
+                                {{ surgeon.national_code }}
+                            </td>
+                            <td>
+                                {{ surgeon.gender }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+{% endblock %}

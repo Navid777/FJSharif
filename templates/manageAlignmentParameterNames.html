@@ -1,0 +1,50 @@
+{% extends template_base %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+        <div class="ui clearing olive segment">
+            <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_alignment_parameter_name' %}">
+                <i class="ui plus icon"></i>
+                New Alignment Parameter
+            </a>
+            <h2 class="ui header">
+                <i class="options icon"> </i>
+                <div class="content">
+                    Edit Alignment Parameters
+                    <div class="sub header">Click on  the alignment parameter's name to edit.</div>
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <table class="ui blue sortable celled table">
+                <thead>
+                    <th>Alignment Parameter</th>
+                    <th>Min-Max</th>
+                    <th>Direction</th>
+                    <th>Type( Degree/Length)</th>
+                </thead>
+                <tbody>
+                    {% for parameter in parameters %}
+                        <tr>
+                             <td>
+                                <a class="ui image header" href="{% url 'edit_alignment_parameter_name' alignment_parameter_name_id=parameter.id %}">
+                                    <img src="{{ parameter|picture }}" class="ui mini rounded image"/>
+                                    <div class="content">{{ parameter.name}}
+                                        <div class="sub header">{{ parameter.abbreviation}}</div>
+                                    </div>
+                                </a>
+                             </td>
+                            <td>
+                               {{ parameter.min_value }}-{{ parameter.max_value }}
+                            </td>
+                            <td>
+                                {{ parameter.direction }}
+                            </td>
+                            <td>
+                                {{ parameter.type }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+{% endblock %}

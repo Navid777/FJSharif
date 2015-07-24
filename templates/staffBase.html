@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load filters %}
+{% block page_header %}
+    <nav class="ui inverted blue clearing segment" style="border-radius: 0;">
+        <div class="ui divided horizontal inverted tiny middle aligned link list">
+            <a class="active item" href="{% url 'home' %}">
+                <img class="ui avatar image" src="{{ staff_user|picture }}">
+                <div class="content">
+                  <div class="header">{{ staff_user.user.get_full_name|title }}</div>
+                  {{ staff_user.position }}
+                </div>
+            </a>
+            <a class="icon item" href="{% url 'home' %}">
+                <i class="home icon"></i>
+                Home
+            </a>
+            <a class="icon item" href="{% url 'manage_surgeons' %}">
+                <i class="doctor icon"></i>
+                Surgeons
+            </a>
+            <a class="icon item" href="{% url 'manage_patients' %}">
+                <i class="handicap icon"></i>
+                Patients
+            </a>
+            <a class="icon item" href="{% url 'manage_proficiencies' %}">
+                <i class="first aid icon"></i>
+                Proficiencies
+            </a>
+            <a class="icon item" href="{% url 'manage_alignment_parameter_names' %}">
+                <i class="options icon"></i>
+                Alignment Parameters
+            </a>
+            <a class="item" href="{% url 'edit_staff' staff_id=staff_user.id %}">
+                Profile
+            </a>
+            <a class="item" href="{% url 'logout' %}">
+                Logout
+            </a>
+
+
+        </div>
+    </nav>
+{% endblock %}

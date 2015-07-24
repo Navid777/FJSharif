@@ -1,4 +1,4 @@
-{% extends 'surgeonBase.html' %}
+{% extends template_base %}
 {% load filters %}
 
 {% block body %}
@@ -34,8 +34,7 @@
                                 <div class="ui">
                                     <strong>Surgeon: </strong>{{ order.surgeon.user.get_full_name | title }}
                                 </div>
-                                <div class="ui">
-                                    <h5>Primary Diagnosis: </h5>
+                                <div class="ui" style="margin-top:10px;">
                                     <div class="ui  message">
                                         {{ order | diagnosis }}
                                     </div>

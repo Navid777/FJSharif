@@ -1,11 +1,28 @@
-{% extends 'base.html' %}
+{% extends template_base %}
+{% load filters %}
 
 {% block body%}
-<div class="ui stackable centered two column grid container">
-	<div class="column standard">
+<div class="ui stackable grid container">
+    {% if surgeon %}
+    <div class="three wide column">
+        <div class="ui olive card">
+            <div class="content">
+                <img class="right floated ui large image" src="{{ surgeon |person_picture }}">
+                <div class="header">{{ surgeon.user.get_full_name|title }}</div>
+                <div class="meta">{{ surgeon.proficiency.proficient_title }}</div>
+                </div>
+            <div class="content">
+                <div class="description">
+                    <h5 class="ui header">Email</h5>{{ surgeon | email }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+	<div class="thirteen wide column">
 		<form class="ui {% if user_form.errors or surgeon_form.errors %} error {%endif%}form"  action="" method="post"  enctype="multipart/form-data">
 			{% csrf_token %}
-			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add a{% endif %} Surgeon</h2>
+			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add a{% endif %} {% if surgeon_user %}Profile{% else %}Surgeon{% endif %}</h2>
 			{% if user_form.non_field_errors%}
 			<div class="ui error message">
 			{% for error in user_form.non_field_errors%}
@@ -185,9 +202,15 @@
 						{{ surgeon_form.mobile_number}}
 					</div>
 				</div>
+                <div class="ui field">
+                    <label>Profile Picture</label>
+                    <div class="ui message">
+                        {{ surgeon_form.picture}}
+                    </div>
+                </div>
 			</div>
-			{{ surgeon_form.picture}}
-			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Surgeon">
+
+			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %}{% if surgeon_user %} Profile{% else %} Surgeon{% endif %}">
 		</form>
 	</div>
 </div>

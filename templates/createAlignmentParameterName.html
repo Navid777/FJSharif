@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends template_base%}
 
 {% block body%}
 <div class="ui stackable centered two column grid container">
 	<div class="column standard">		
 		<form class="ui {% if form.errors %} error {%endif%} form"  action="" method="post"  enctype="multipart/form-data">
 			{% csrf_token %}
-			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add an{% endif %} Alignment Parameter Name</h2>
+			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add an{% endif %} Alignment Parameter</h2>
 			{% if form.non_field_errors%}
 				<div class="ui error message">
 				{% for error in form.non_field_errors%}
@@ -26,7 +26,7 @@
 				{{ field }}
 			</div>
 			{% endfor %}
-			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Alignment Parameter Name">
+			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Alignment Parameter">
 		</form>
 	</div>
 </div>
