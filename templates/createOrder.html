@@ -1,0 +1,138 @@
+{% extends template_base %}
+{% load filters %}
+{% block body %}
+<div class="ui container">
+    <div class="ui six cards">
+        {% if patient %}
+        <a class="ui olive card" href="{% url 'view_patient' patient_id=patient.id %}">
+            <div class="content">
+                <img class="right floated ui large image" src="{{ patient|person_picture }}">
+                <div class="header">{{ patient.user.get_full_name|title }}</div>
+                <div class="meta">{{ patient.age|age }}</div>
+                <div class="description">{{ patient|description }}</div>
+            </div>
+        </a>
+        {% endif %}
+        {% if surgeon %}
+        <div class="ui olive card">
+            <div class="content">
+                <img class="right floated ui large image" src="{{ surgeon |person_picture }}">
+                <div class="header">{{ surgeon.user.get_full_name|title }}</div>
+                <div class="meta">{{ surgeon.proficiency.proficient_title }}</div>
+                </div>
+            <div class="content">
+                <div class="description">
+                    <h5 class="ui header">Email</h5>{{ surgeon | email }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="ui top attached three steps" style="margin-top:20px;">
+        <div class="{% if not patient %}active {% endif %}step">
+            <i class="handicap icon"></i>
+            <div class="content">
+                <div class="title">Choosing Patient</div>
+                <div class="descriptions">Choose a patient for this order</div>
+            </div>
+        </div>
+        <div class="{% if not patient %}disabled{% elif not surgeon %}active{% endif %} step">
+            <i class="doctor icon"></i>
+            <div class="content">
+                <div class="title">Choosing Surgeon</div>
+                <div class="descriptions">Choose a surgeon for this order</div>
+            </div>
+        </div>
+        <div class="{% if surgeon %}active{% else %}disabled{% endif %} step">
+            <i class="upload icon"></i>
+            <div class="content">
+                <div class="title">Uploading Files</div>
+                <div class="descriptions">Upload the Excel and Zip files.</div>
+            </div>
+        </div>
+    </div>
+    <div class="ui attached segment">
+        {% if not patient %}
+            <form class="ui form" method="post" action="" style="padding-bottom: 40px;">
+            {% csrf_token %}
+                <div class="three fields">
+                    {% for field in search_patient_form %}
+                        <div class="field">
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="ui teal right floated button" name="search_patient">
+                    <i class="search icon"></i>
+                    Search
+                </button>
+            </form>
+            <div class="content" style="padding-top: 50px;">
+                <div class="ui four link cards">
+                {% for patient in patient_search_results %}
+                    <a class="ui olive card" href="{% url 'create_order' patient_id=patient.id %}">
+                        <div class="content">
+                            <img class="right floated ui large image" src="{{ patient|person_picture }}">
+                            <div class="header">{{ patient.user.get_full_name|title }}</div>
+                            <div class="meta">{{ patient.age|age }}</div>
+                            <div class="description">{{ patient|description }}</div>
+                        </div>
+                    </a>
+                {% endfor  %}
+                </div>
+            </div>
+        {% elif not surgeon %}
+            <form class="ui form" method="post" action="">
+            {% csrf_token %}
+                <div class="three fields">
+                    {% for field in search_surgeon_form %}
+                        <div class="field">
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="ui teal right floated button" name="search_surgeon">
+                    <i class="search icon"></i>
+                    Search
+                </button>
+            </form>
+            <div class="content">
+                <div class="ui five cards" style="padding-top: 50px;">
+                    {% for surgeon in surgeon_search_results %}
+                        <a class="ui olive card" href="{% url 'create_order' patient_id=patient.id surgeon_id=surgeon.id %}">
+                            <div class="content">
+                                <img class="right floated ui large image" src="{{ surgeon |person_picture }}">
+                                <div class="header">{{ surgeon.user.get_full_name|title }}</div>
+                                <div class="meta">{{ surgeon.proficiency.proficient_title }}</div>
+                                </div>
+                            <div class="content">
+                                <div class="description">
+                                    <h5 class="ui header">Email</h5>{{ surgeon | email }}
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <form method="post" action="" class="ui form" enctype="multipart/form-data" style="padding-bottom: 50px;">
+            {% csrf_token %}
+                {% for field in upload_report_form %}
+                    <div class="field">
+                        <label>{{ field.label }}</label>
+                        <div class="ui message">
+                        {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+            <button class="ui right floated blue button" type="submit" value="Upload" name="upload_report">
+                <i class="ui upload icon"></i>
+                Upload
+            </button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

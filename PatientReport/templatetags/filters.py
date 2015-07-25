@@ -77,7 +77,8 @@ def alignment_parameter_picture(**kwargs):
     type = kwargs['type']
     for p in order.report.alignmentparameter_set.all():
         if p.type == type and p.name.name == parameter_name:
-            return p.picture.url
+            if p.picture:
+                return p.picture.url
     return MEDIA_URL+'images/avatar/image.jpg'
 
 
@@ -88,7 +89,7 @@ def alignment_parameter_value(**kwargs):
     type = kwargs['type']
     for p in order.report.alignmentparameter_set.all():
         if p.type == type and p.name.name == parameter_name:
-            return p.value
+            return round(p.value,1)
     return 'N/A'
 
 

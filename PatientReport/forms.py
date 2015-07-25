@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.forms.models import ModelForm
 
 from PatientReport.models import Surgeon, Proficiency, AlignmentParameterName, \
-    Patient, Staff
+    Patient, Staff, UploadReport
 
 
 class SurgeonForm(ModelForm):
@@ -157,5 +157,11 @@ class SearchSurgeonForm(forms.Form):
         super(SearchSurgeonForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['placeholder'] = 'Enter the patient\'s first name'
         self.fields['last_name'].widget.attrs['placeholder'] = 'Enter the patient\'s last name'
+
+
+class UploadReportForm(forms.ModelForm):
+    class Meta:
+        model = UploadReport
+        fields = '__all__'
 
 

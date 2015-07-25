@@ -120,7 +120,7 @@ class AlignmentParameterName(models.Model):
     abbreviation = models.CharField(max_length=50, unique=True)
     max_value = models.FloatField(null=True, blank=True)
     min_value = models.FloatField(null=True, blank=True)
-    picture = models.ImageField(upload_to='alignmentParameters', null=True, blank=True)
+    picture = models.ImageField(upload_to='alignmentParameters', null=True, blank=True, max_length=500)
     description = models.CharField(max_length=1000, null=True, blank=True)
     TYPES = (('D', 'Degree'), ('L', 'Length'))
     DIRECTIONS = (('H', 'Horizontal'), ('V', 'Vertical'))
@@ -135,7 +135,7 @@ class AlignmentParameter(models.Model):
     name = models.ForeignKey(AlignmentParameterName)
     TYPES = (('R', 'Right'), ('L', 'Left'))
     type = models.CharField(max_length=1, choices=TYPES)
-    picture = models.ImageField(upload_to='photos/%Y/%m/%d')
+    picture = models.ImageField(null=True, blank=True, max_length=500)
     value = models.FloatField()
     report = models.ForeignKey(Report)
 
@@ -144,6 +144,12 @@ class AlignmentParameter(models.Model):
     
     def __unicode__(self):
         return self.name.__unicode__()
+
+
+class UploadReport(models.Model):
+    attributes = models.FileField(upload_to='temp')
+    zip_pictures = models.FileField(upload_to='temp')
+
 
 
     

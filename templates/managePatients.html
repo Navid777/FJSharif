@@ -55,6 +55,17 @@
                                             <div class="sub header">{{ patient.age|age }}</div>
                                         </div>
                                     </a>
+                                    <div class="ui right floated buttons">
+                                        <a class="ui basic green button" href="{% url 'view_patient' patient_id=patient.id %}">
+                                            View Profile
+                                        </a>
+                                        <a class="ui basic teal button" href="{% url 'edit_patient' patient_id=patient.id %}">
+                                            Edit Profile
+                                        </a>
+                                        <a class="ui basic blue button" href="{% url 'create_order' patient_id=patient.id %}">
+                                            Create Order
+                                        </a>
+                                    </div>
                                 </td>
                                 <td>
                                    {{ patient.user.username }}
@@ -102,6 +113,17 @@
                                         <div class="sub header">{{ patient.age|age }}</div>
                                     </div>
                                 </a>
+                                <div class="ui right floated buttons">
+                                    <a class="ui basic green button" href="{% url 'view_patient' patient_id=patient.id %}">
+                                        View Profile
+                                    </a>
+                                    <a class="ui basic teal button" href="{% url 'edit_patient' patient_id=patient.id %}">
+                                        Edit Profile
+                                    </a>
+                                    <a class="ui basic blue button" href="{% url 'create_order' patient_id=patient.id %}">
+                                        Create Order
+                                    </a>
+                                </div>
                             </td>
                             <td>
                                {{ patient.user.username }}

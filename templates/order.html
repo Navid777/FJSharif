@@ -238,14 +238,14 @@
                                   <div style="margin-bottom: 10px;">
                                       <label class="ui  small {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label">
                                           Left Value
-                                        <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                                        <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L'%}</div>
                                       </label>
 
                                   </div>
                                   <div>
                                       <label class="ui small {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label">
                                           Right Value
-                                      <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                                      <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R'%}</div>
                                       </label>
                                   </div>
                                 {{ alignment_parameter.description}}
@@ -268,8 +268,8 @@
                     </div>
                     <div class="content">
                         <div class="header">Left</div>
-                        <div class="green meta">Min:{{ alignment_parameter.min_value }}</div>
-                        <div class="meta">Max: {{ alignment_parameter.max_value }}</div>
+                        <div class="green meta">Min:{{ alignment_parameter.min_value | floatformat }}</div>
+                        <div class="meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
                         <div class="description">
                             <label class="ui {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label">
                                 Value
@@ -285,8 +285,8 @@
                     </div>
                     <div class="content bottom aligned">
                         <div class="header">Right</div>
-                        <div class="green meta">Min:{{ alignment_parameter.min_value }}</div>
-                        <div class="meta">Max: {{ alignment_parameter.max_value }}</div>
+                        <div class="green meta">Min:{{ alignment_parameter.min_value | floatformat }}</div>
+                        <div class="meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
                         <div class="description">
                             <label class="ui {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label">
                                 Value
@@ -305,8 +305,8 @@
                         </div>
                         <div style="width:25%; display:inline-block;" class="ui segment">
                             <div class="ui dividing header">Left</div>
-                            <div class="ui meta">Min: {{ alignment_parameter.min_value }}</div>
-                            <div class="ui meta">Max: {{ alignment_parameter.max_value }}</div>
+                            <div class="ui meta">Min: {{ alignment_parameter.min_value | floatformat }}</div>
+                            <div class="ui meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
                             <label class="ui large {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label" style="margin-top:10px; margin-left:0;">
                                 Value
                                 <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
@@ -320,8 +320,8 @@
                         </div>
                         <div style="width:25%; display:inline-block;" class="ui segment">
                             <div class="ui dividing header">Right</div>
-                            <div class="ui meta">Min: {{ alignment_parameter.min_value }}</div>
-                            <div class="ui meta">Max: {{ alignment_parameter.max_value }}</div>
+                            <div class="ui meta">Min: {{ alignment_parameter.min_value | floatformat }}</div>
+                            <div class="ui meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
                             <label class="ui large {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label" style="margin-top:10px; margin-left:0;">
                                 Value
                                 <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>

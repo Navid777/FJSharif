@@ -37,11 +37,95 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PatientReport/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.068966" vertical-offset="3589" max-vertical-offset="5134">
-              <caret line="230" column="22" selection-start-line="230" selection-start-column="22" selection-end-line="230" selection-end-column="22" />
+            <state vertical-scroll-proportion="-15.172414" vertical-offset="1753" max-vertical-offset="6715">
+              <caret line="129" column="29" selection-start-line="129" selection-start-column="29" selection-end-line="129" selection-end-column="29" />
               <folding>
-                <element signature="e#0#52#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageSurgeons.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/manageSurgeons.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.307693" vertical-offset="3" max-vertical-offset="1207">
+              <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+              <folding>
+                <element signature="e#717#1330#0#HTML" expanded="false" />
+                <element signature="n#if#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createOrder.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/createOrder.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.12854442" vertical-offset="0" max-vertical-offset="2431">
+              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+              <folding>
+                <element signature="e#1291#1315#0#HTML" expanded="true" />
+                <element signature="e#2431#2460#0#HTML" expanded="true" />
+                <element signature="e#3062#3088#0#HTML" expanded="true" />
+                <element signature="e#4565#4591#0#HTML" expanded="true" />
+                <element signature="e#5662#5691#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createSurgeon.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/createSurgeon.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="113.88461" vertical-offset="3216" max-vertical-offset="3774">
+              <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="order.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/order.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.8909092" vertical-offset="3921" max-vertical-offset="5865">
+              <caret line="240" column="150" selection-start-line="240" selection-start-column="150" selection-end-line="240" selection-end-column="150" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="surgeonHome.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/surgeonHome.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.461538" vertical-offset="1" max-vertical-offset="782">
+              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="51" selection-end-column="8" />
+              <folding>
+                <element signature="e#521#1134#0#HTML" expanded="false" />
+                <element signature="n#if#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="managePatients.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/managePatients.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.346154" vertical-offset="819" max-vertical-offset="2499">
+              <caret line="64" column="125" selection-start-line="64" selection-start-column="125" selection-end-line="64" selection-end-column="125" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -49,8 +133,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FJSharif/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="952">
-              <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="1020">
+              <caret line="36" column="62" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -59,35 +143,9 @@
       <file leaf-file-name="staffBase.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/staffBase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.576923" vertical-offset="147" max-vertical-offset="833">
-              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+            <state vertical-scroll-proportion="-9.384615" vertical-offset="300" max-vertical-offset="901">
+              <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="surgeonHome.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/surgeonHome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="595">
-              <caret line="53" column="98" selection-start-line="53" selection-start-column="98" selection-end-line="53" selection-end-column="98" />
-              <folding>
-                <element signature="e#148#182#0#HTML" expanded="true" />
-                <element signature="e#109#2346#0#HTML" expanded="false" />
-                <element signature="e#2395#2447#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manageProficiencies.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/manageProficiencies.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="816">
-              <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
-              <folding>
-                <element signature="e#142#176#0#HTML" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -95,70 +153,10 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PatientReport/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.724138" vertical-offset="1243" max-vertical-offset="2686">
-              <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="15" />
+            <state vertical-scroll-proportion="-38.482758" vertical-offset="1264" max-vertical-offset="2788">
+              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="My HTML.html" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/Projects/FJSharif/Example/My HTML.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5272727" vertical-offset="100" max-vertical-offset="629">
-              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="170" selection-end-column="4" />
-              <folding>
-                <element signature="n#script#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="order.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/order.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.360465" vertical-offset="2867" max-vertical-offset="5814">
-              <caret line="97" column="40" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
-              <folding>
-                <element signature="e#10101#10128#0#HTML" expanded="true" />
-                <element signature="e#10170#10226#0#HTML" expanded="true" />
-                <element signature="e#10276#10344#0#HTML" expanded="true" />
-                <element signature="e#10551#10575#0#HTML" expanded="true" />
-                <element signature="e#11282#11310#0#HTML" expanded="true" />
-                <element signature="e#13085#13133#0#HTML" expanded="true" />
-                <element signature="e#14312#14360#0#HTML" expanded="true" />
-                <element signature="e#15513#15568#0#HTML" expanded="true" />
-                <element signature="e#15705#15737#0#HTML" expanded="true" />
-                <element signature="e#15800#15840#0#HTML" expanded="true" />
-                <element signature="e#16275#16314#0#HTML" expanded="true" />
-                <element signature="e#16840#16895#0#HTML" expanded="true" />
-                <element signature="e#17032#17064#0#HTML" expanded="true" />
-                <element signature="e#17127#17167#0#HTML" expanded="true" />
-                <element signature="e#17603#17642#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="filters.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PatientReport/templatetags/filters.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="2193">
-              <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manageAlignmentParameterNames.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/manageAlignmentParameterNames.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="935">
-              <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
-              <folding>
-                <element signature="e#142#176#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,7 +173,6 @@
         <option value="$PROJECT_DIR$/static/css/semantic.min.css" />
         <option value="$PROJECT_DIR$/static/js/semantic.min.js" />
         <option value="$PROJECT_DIR$/templates/json/stl.json" />
-        <option value="$PROJECT_DIR$/PatientReport/models.py" />
         <option value="$USER_HOME$/Desktop/Projects/FJSharif/My HTML.html" />
         <option value="$PROJECT_DIR$/FJSharif/local_settings.py" />
         <option value="$PROJECT_DIR$/templates/test3d.html" />
@@ -186,28 +183,31 @@
         <option value="$PROJECT_DIR$/templates/createPatient.html" />
         <option value="$PROJECT_DIR$/templates/patientBase.html" />
         <option value="$PROJECT_DIR$/templates/patient.html" />
-        <option value="$PROJECT_DIR$/PatientReport/templatetags/filters.py" />
         <option value="$PROJECT_DIR$/templates/createStaff.html" />
         <option value="$PROJECT_DIR$/templates/staffSideBar.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/static/js/script.js" />
         <option value="$PROJECT_DIR$/templates/manageSurgoens.html" />
-        <option value="$PROJECT_DIR$/PatientReport/forms.py" />
         <option value="$PROJECT_DIR$/PatientReport/context_processors.py" />
         <option value="$PROJECT_DIR$/templates/createSurgeon.html" />
         <option value="$PROJECT_DIR$/templates/createProficiency.html" />
-        <option value="$PROJECT_DIR$/templates/staffBase.html" />
-        <option value="$PROJECT_DIR$/FJSharif/urls.py" />
         <option value="$PROJECT_DIR$/templates/createAlignmentParameterName.html" />
-        <option value="$PROJECT_DIR$/PatientReport/views.py" />
         <option value="$PROJECT_DIR$/templates/staffHome.html" />
         <option value="$PROJECT_DIR$/templates/manageSurgeons.html" />
-        <option value="$PROJECT_DIR$/templates/managePatients.html" />
         <option value="$PROJECT_DIR$/templates/surgeonHome.html" />
         <option value="$PROJECT_DIR$/templates/manageProficiencies.html" />
         <option value="$PROJECT_DIR$/templates/manageAlignmentParameterNames.html" />
         <option value="$USER_HOME$/Desktop/Projects/FJSharif/Example/My HTML.html" />
+        <option value="$PROJECT_DIR$/PatientReport/forms.py" />
+        <option value="$PROJECT_DIR$/templates/createReport.html" />
+        <option value="$PROJECT_DIR$/PatientReport/templatetags/filters.py" />
         <option value="$PROJECT_DIR$/templates/order.html" />
+        <option value="$PROJECT_DIR$/PatientReport/models.py" />
+        <option value="$PROJECT_DIR$/PatientReport/views.py" />
+        <option value="$PROJECT_DIR$/templates/managePatients.html" />
+        <option value="$PROJECT_DIR$/templates/staffBase.html" />
+        <option value="$PROJECT_DIR$/FJSharif/urls.py" />
+        <option value="$PROJECT_DIR$/templates/createOrder.html" />
       </list>
     </option>
   </component>
@@ -271,7 +271,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PatientReport" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,10 +286,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="PatientReport" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templatetags" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -664,23 +660,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/surgeonBase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="527">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PatientReport/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="685" max-vertical-offset="2567">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FJSharif/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
@@ -921,22 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/createSurgeon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="3774">
-          <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PatientReport/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2272" max-vertical-offset="2737">
-          <caret line="151" column="91" selection-start-line="151" selection-start-column="91" selection-end-line="151" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/createAlignmentParameterName.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="663">
@@ -961,89 +924,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/manageSurgeons.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19767442" vertical-offset="0" max-vertical-offset="344">
-          <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="81" />
-          <folding>
-            <element signature="e#103#3374#0#HTML" expanded="false" />
-            <element signature="e#3388#3439#0#HTML" expanded="false" />
-            <element signature="e#3383#5451#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/staffBase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.576923" vertical-offset="147" max-vertical-offset="833">
-          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/managePatients.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1538463" vertical-offset="86" max-vertical-offset="2125">
-          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-          <folding>
-            <element signature="e#142#176#0#HTML" expanded="false" />
-            <element signature="e#3401#3453#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/surgeonHome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="595">
-          <caret line="53" column="98" selection-start-line="53" selection-start-column="98" selection-end-line="53" selection-end-column="98" />
-          <folding>
-            <element signature="e#148#182#0#HTML" expanded="true" />
-            <element signature="e#109#2346#0#HTML" expanded="false" />
-            <element signature="e#2395#2447#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/patient.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327032" vertical-offset="164" max-vertical-offset="918">
-          <caret line="20" column="46" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/manageAlignmentParameterNames.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="935">
           <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
           <folding>
-            <element signature="e#142#176#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PatientReport/templatetags/filters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="2193">
-          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FJSharif/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="952">
-          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PatientReport/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.068966" vertical-offset="3589" max-vertical-offset="5134">
-          <caret line="230" column="22" selection-start-line="230" selection-start-column="22" selection-end-line="230" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#142#176#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1053,7 +939,7 @@
         <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="816">
           <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
           <folding>
-            <element signature="e#142#176#0#HTML" expanded="true" />
+            <element signature="e#142#176#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1068,36 +954,144 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PatientReport/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.448276" vertical-offset="2369" max-vertical-offset="2941">
+          <caret line="164" column="26" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PatientReport/templatetags/filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="2210">
+          <caret line="91" column="35" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="918">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/createReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="221">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8909092" vertical-offset="3921" max-vertical-offset="5865">
+          <caret line="240" column="150" selection-start-line="240" selection-start-column="150" selection-end-line="240" selection-end-column="150" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PatientReport/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.724138" vertical-offset="1243" max-vertical-offset="2686">
-          <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="15" />
+        <state vertical-scroll-proportion="-38.482758" vertical-offset="1264" max-vertical-offset="2788">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/order.html">
+    <entry file="file://$PROJECT_DIR$/PatientReport/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.360465" vertical-offset="2867" max-vertical-offset="5814">
-          <caret line="97" column="40" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
+        <state vertical-scroll-proportion="-15.172414" vertical-offset="1753" max-vertical-offset="6715">
+          <caret line="129" column="29" selection-start-line="129" selection-start-column="29" selection-end-line="129" selection-end-column="29" />
           <folding>
-            <element signature="e#10101#10128#0#HTML" expanded="true" />
-            <element signature="e#10170#10226#0#HTML" expanded="true" />
-            <element signature="e#10276#10344#0#HTML" expanded="true" />
-            <element signature="e#10551#10575#0#HTML" expanded="true" />
-            <element signature="e#11282#11310#0#HTML" expanded="true" />
-            <element signature="e#13085#13133#0#HTML" expanded="true" />
-            <element signature="e#14312#14360#0#HTML" expanded="true" />
-            <element signature="e#15513#15568#0#HTML" expanded="true" />
-            <element signature="e#15705#15737#0#HTML" expanded="true" />
-            <element signature="e#15800#15840#0#HTML" expanded="true" />
-            <element signature="e#16275#16314#0#HTML" expanded="true" />
-            <element signature="e#16840#16895#0#HTML" expanded="true" />
-            <element signature="e#17032#17064#0#HTML" expanded="true" />
-            <element signature="e#17127#17167#0#HTML" expanded="true" />
-            <element signature="e#17603#17642#0#HTML" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/manageSurgeons.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.307693" vertical-offset="3" max-vertical-offset="1207">
+          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+          <folding>
+            <element signature="e#717#1330#0#HTML" expanded="false" />
+            <element signature="n#if#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/managePatients.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.346154" vertical-offset="819" max-vertical-offset="2499">
+          <caret line="64" column="125" selection-start-line="64" selection-start-column="125" selection-end-line="64" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/createSurgeon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="113.88461" vertical-offset="3216" max-vertical-offset="3774">
+          <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/surgeonHome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.461538" vertical-offset="1" max-vertical-offset="782">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="51" selection-end-column="8" />
+          <folding>
+            <element signature="e#521#1134#0#HTML" expanded="false" />
+            <element signature="n#if#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/staffBase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.384615" vertical-offset="300" max-vertical-offset="901">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FJSharif/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="1020">
+          <caret line="36" column="62" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/createOrder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12854442" vertical-offset="0" max-vertical-offset="2431">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding>
+            <element signature="e#1291#1315#0#HTML" expanded="true" />
+            <element signature="e#2431#2460#0#HTML" expanded="true" />
+            <element signature="e#3062#3088#0#HTML" expanded="true" />
+            <element signature="e#4565#4591#0#HTML" expanded="true" />
+            <element signature="e#5662#5691#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

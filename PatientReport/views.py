@@ -1,13 +1,22 @@
+import os
+from zipfile import ZipFile
+import django
 from django.contrib.auth import authenticate, logout
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.uploadhandler import TemporaryFileUploadHandler
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from openpyxl import load_workbook
+from FJSharif.settings import MEDIA_URL, MEDIA_ROOT
+from PatientReport import models
 
 from PatientReport.forms import *
-from PatientReport.models import Patient, Proficiency, AlignmentParameterName, Surgeon, Staff, Order
+from PatientReport.models import Patient, Proficiency, AlignmentParameterName, Surgeon, Staff, Order, AlignmentParameter, \
+    Report
 
 
 # Create your views here.
@@ -54,7 +63,7 @@ def create_staff(request):
             surgeon = staff_form.save(commit=False)
             surgeon.user = user
             surgeon.save()
-    return render(request, 'createStaff.html', {'staff_form':staff_form, 'user_form':user_form})
+    return render(request, 'createStaff.html', {'staff_form': staff_form, 'user_form':user_form})
 
 
 def create_patient(request):
@@ -69,6 +78,68 @@ def create_patient(request):
             patient.user = user
             patient.save()
     return render(request, 'createPatient.html', {'patient_form': patient_form, 'user_form': user_form})
+
+
+@login_required
+def create_report(request):
+    upload_report_form = UploadReportForm()
+    if request.method == 'POST':
+        upload_report_form = UploadReportForm(request.POST, request.FILES)
+        if upload_report_form.is_valid():
+            upload_report = upload_report_form.save()
+            create_report_with_files(1, upload_report.attributes.path, upload_report.zip_pictures.path)
+    return render(request, 'createReport.html', {'upload_report_form': upload_report_form})
+
+
+@login_required
+def create_order(request, patient_id=None, surgeon_id=None):
+    patient = None
+    if patient_id:
+        patient = Patient.objects.get(id=patient_id)
+    surgeon = None
+    if surgeon_id:
+        surgeon = Surgeon.objects.get(id=surgeon_id)
+    search_patient_form = SearchPatientForm()
+    search_surgeon_form = SearchSurgeonForm()
+    patient_search_results = Patient.objects.all()
+    surgeon_search_results = Surgeon.objects.all()
+    upload_report_form = UploadReportForm()
+    if request.method == 'POST':
+        if 'search_patient' in request.POST:
+            search_patient_form = SearchPatientForm(request.POST)
+            patient_search_results = Patient.objects.filter(
+                user__first_name__contains=search_patient_form.cleaned_data['first_name'],
+                user__last_name__contains=search_patient_form.cleaned_data['last_name'],
+                national_code__contains=search_patient_form.cleaned_data['national_code'])
+        if 'search_surgeon' in request.POST:
+            search_surgeon_form = SearchSurgeonForm(request.POST)
+            if search_surgeon_form.is_valid():
+                surgeon_search_results = Surgeon.objects.filter(
+                    user__first_name__contains=search_surgeon_form.cleaned_data['first_name'],
+                    user__last_name__contains=search_surgeon_form.cleaned_data['last_name'],
+                    )
+                if search_surgeon_form.cleaned_data['gender'] != '':
+                    surgeon_search_results = surgeon_search_results.filter(gender=search_surgeon_form.cleaned_data['gender'])
+                if search_surgeon_form.cleaned_data['proficiency'] is not None:
+                    surgeon_search_results = surgeon_search_results.filter(proficiency=search_surgeon_form.cleaned_data['proficiency'])
+        if 'upload_report' in request.POST:
+            upload_report_form = UploadReportForm(request.POST, request.FILES)
+            if upload_report_form.is_valid():
+                upload_report = upload_report_form.save()
+                report = Report(name="report")
+                report.save()
+                order = Order(staff=request.user.staff, patient=patient, surgeon=surgeon, report=report)
+                order.save();
+                create_report_with_files(order.id, upload_report.attributes.path, upload_report.zip_pictures.path)
+
+
+    return render(request, 'createOrder.html', {'search_patient_form': search_patient_form,
+                                                'search_surgeon_form': search_surgeon_form,
+                                                'upload_report_form': upload_report_form,
+                                                'patient_search_results': patient_search_results,
+                                                'surgeon_search_results': surgeon_search_results,
+                                                'patient': patient,
+                                                'surgeon': surgeon})
 
 
 def create_proficiency(request):
@@ -271,8 +342,6 @@ def manage_surgeons(request):
                     user__first_name__contains=search_surgeon_form.cleaned_data['first_name'],
                     user__last_name__contains=search_surgeon_form.cleaned_data['last_name'],
                     )
-                print search_surgeon_form.cleaned_data['gender']
-                print search_surgeon_form.cleaned_data['proficiency']
                 if search_surgeon_form.cleaned_data['gender'] != '':
                     search_results = search_results.filter(gender=search_surgeon_form.cleaned_data['gender'])
                 if search_surgeon_form.cleaned_data['proficiency'] is not None:
@@ -294,3 +363,27 @@ def manage_proficiencies(request):
 def manage_alignment_parameter_names(request):
     parameters = AlignmentParameterName.objects.all()
     return render(request, 'manageAlignmentParameterNames.html', {'parameters': parameters})
+
+
+def create_report_with_files(order_id, xlsx_path, zip_path):
+    order = Order.objects.get(id=order_id)
+    report = order.report
+    patient = order.patient
+    zip_file = ZipFile(zip_path)
+    pictures_root = MEDIA_ROOT+'/alignment_pictures/report'+str(report.id)
+    pictures_url = MEDIA_URL+'alignment_pictures/report'+str(report.id)
+    zip_file.extractall(pictures_root)
+    xlsx_file = load_workbook(xlsx_path)
+    sheet = xlsx_file['Alignment']
+    for row in sheet.rows:
+        try:
+            parameter_name = AlignmentParameterName.objects.get(name=row[0].value)
+            AlignmentParameter(name=parameter_name, report=report, value=row[2].value, type='R',
+                               picture=pictures_url+'/'+parameter_name.name+'_R.jpg').save()
+            AlignmentParameter(name=parameter_name, report=report, value=row[3].value, type='L',
+                               picture=pictures_url+'/'+parameter_name.name+'_L.jpg').save()
+        except ObjectDoesNotExist:
+            pass
+
+
+
