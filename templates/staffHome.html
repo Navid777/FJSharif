@@ -5,7 +5,7 @@
         <div class="ui four link cards">
             <div class="teal card">
                 <a class="content" href="{% url 'manage_surgeons' %}">
-                    <i class="right floated large doctor teal icon"></i>
+                    <i class="right floated big doctor teal icon"></i>
                     <div class="header">
                         Surgeons
                     </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="blue card">
                 <a class="content" href="{% url 'manage_patients' %}">
-                    <i class="right floated large handicap blue icon"></i>
+                    <i class="right floated big handicap blue icon"></i>
                     <div class="header">
                         Patients
                     </div>
@@ -43,6 +43,7 @@
                     </a>
                 </div>
             </div>
+            <!--
             <div class="violet card" >
                 <a class="content" href="{% url 'manage_proficiencies' %}">
                     <i class="right floated large first aid violet icon"></i>
@@ -63,9 +64,10 @@
                     </a>
                 </div>
             </div>
-            <div class="purple card" >
+             -->
+            <div class="violet card" >
                 <a class="content" href="{% url 'manage_alignment_parameter_names' %}">
-                    <i class="right floated large options purple icon"></i>
+                    <i class="right floated big options violet icon"></i>
                     <div class="header">
                         Alignment Parameters
                     </div>
@@ -80,6 +82,26 @@
                     <a class="ui right floated mini blue button" href="{% url 'create_alignment_parameter_name' %}">
                         <i class="plus icon"></i>
                         New Alignment Parameter
+                    </a>
+                </div>
+            </div>
+            <div class="purple card" >
+                <a class="content" href="{% url 'manage_orders' %}">
+                    <i class="right floated big calendar purple icon"></i>
+                    <div class="header">
+                        Orders
+                    </div>
+                    <div class="meta">
+                        Orders' Section
+                    </div>
+                    <div class="description">
+                        Create new orders  and edit orders in this section.
+                    </div>
+                </a>
+                <div class="extra content">
+                    <a class="ui right floated mini blue button" href="{% url 'create_order' %}">
+                        <i class="plus icon"></i>
+                        New Order
                     </a>
                 </div>
             </div>

@@ -27,15 +27,22 @@ class SurgeonForm(ModelForm):
 class PatientForm(ModelForm):
     class Meta:
         model = Patient
-        fields = ['national_code', 'description', 'DOB', 'picture', 'gender']
+        fields = ['national_code', 'description', 'DOB', 'picture', 'gender', 'code', 'phone_number', 'mobile_number', 'address']
 
     def __init__(self, *args, **kwargs):
         super(PatientForm, self).__init__(*args, **kwargs)
         self.fields['national_code'].widget.attrs['placeholder'] = 'Enter your national code'
         self.fields['description'].widget.attrs['placeholder'] = 'Description'
         self.fields['DOB'].widget.attrs['placeholder'] = 'YYYY-MM-DD'
+        self.fields['code'].widget.attrs['placeholder'] = 'Enter the patient\'s code'
+        self.fields['phone_number'].widget.attrs['placeholder'] = 'Phone Number'
+        self.fields['mobile_number'].widget.attrs['placeholder'] = 'Mobile Number'
+        self.fields['address'].widget.attrs['placeholder'] = 'Address'
         self.fields['picture'].widget.attrs['style'] = 'margin: 5px;'
         self.fields['gender'].widget.attrs['class'] = 'ui dropdown'
+
+    def clean_national_code(self):
+        return self.cleaned_data['national_code'] or None
 
 
 class StaffForm(ModelForm):

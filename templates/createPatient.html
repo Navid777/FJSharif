@@ -140,42 +140,95 @@
 					{% endif %}
 				</div>
 			</div>
-            <div class="field">
-                {% if patient_form.gender.errors %}
+            <div class="two fields">
+                <div class="field">
+                <label>Gender</label>
+                {{ patient_form.gender }}
+                    {% if patient_form.gender.errors %}
                     <div class="ui error message">
                         {% for error in patient_form.gender.errors %}
                             {{ error }}
                         {% endfor %}
                     </div>
                 {% endif %}
-                <label>Gender</label>
-                {{ patient_form.gender }}
+                </div>
+                <div class="field">
+
+                <label>Patient Code</label>
+                {{ patient_form.code }}
+                    {% if patient_form.code.errors %}
+                    <div class="ui error message">
+                        {% for error in patient_form.code.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                </div>
             </div>
-			<div class="field">
-				
-				{% if patient_form.description.errors %}
+            <div class="field">
+				{% if user_form.phone_number.errors or user_form.mobile_number.errors %}
 				<div class="ui error message">
-					{% for error in patient_form.description.errors%}
+					{% for error in patient_form.phone_number.errors%}
+						<p>
 						{{ error }}
+						</p>
+					{% endfor %}
+					{% for error in patient_form.mobile_number.errors%}
+						<p>
+						{{ error }}
+						</p>
 					{% endfor %}
 				</div>
 				{% endif %}
-				<label>Description</label>
-				{{ patient_form.description }}
+				<label>Phone Number</label>
+				<div class="two fields">
+					<div class="field">
+						{{ patient_form.phone_number }}
+					</div>
+					<div class="field">
+						{{ patient_form.mobile_number }}
+					</div>
+				</div>
 			</div>
-            <div class="field">
-                <div class="ui error message">
-                    {% for error in patient_form.picture.errors %}
-                        {{ error }}
-                    {% endfor %}
+            <div class="two fields">
+                <div class="field">
+                    {% if patient_form.address.errors %}
+                    <div class="ui error message">
+                        {% for error in patient_form.address.errors%}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <label>Address</label>
+                    {{ patient_form.address }}
                 </div>
+                <div class="field">
+                    {% if patient_form.description.errors %}
+                    <div class="ui error message">
+                        {% for error in patient_form.description.errors%}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <label>Description</label>
+                    {{ patient_form.description }}
+                </div>
+            </div>
+            <div class="field">
+                    {% for error in patient_form.picture.errors %}
+                        <div class="ui error message">
+                        {{ error }}
+                        <div class="ui error message">
+                    {% endfor %}
                 <label>Profile Picture</label>
                 <div class="ui message">
                     {{ patient_form.picture}}
                 </div>
             </div>
-
-			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %}{% if patient_user %} Profile{% else %} Patient{% endif %}">
+            <div class="ui two buttons">
+			<input type="submit" class="ui blue button" value="{% if edit %}Save{% elif patient_user %}Create Profile{% else %}Create Patient{% endif %}">
+            <a href="{% url 'manage_patients' %}" class="ui red button">Discard</a>
+            </div>
 		</form>
 	</div>
 </div>

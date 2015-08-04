@@ -22,17 +22,18 @@
                 <i class="handicap icon"></i>
                 Patients
             </a>
+            <!--
             <a class="icon item" href="{% url 'manage_proficiencies' %}">
                 <i class="first aid icon"></i>
                 Proficiencies
-            </a>
+            </a> -->
             <a class="icon item" href="{% url 'manage_alignment_parameter_names' %}">
                 <i class="options icon"></i>
                 Alignment Parameters
             </a>
-            <a class="icon item" href="{% url 'create_order' %}">
-                <i class="upload icon"></i>
-                Create Order
+            <a class="icon item" href="{% url 'manage_orders' %}">
+                <i class="calendar icon"></i>
+                Orders
             </a>
             <a class="item" href="{% url 'edit_staff' staff_id=staff_user.id %}">
                 Profile

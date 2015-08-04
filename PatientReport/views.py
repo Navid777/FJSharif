@@ -63,9 +63,10 @@ def create_staff(request):
             surgeon = staff_form.save(commit=False)
             surgeon.user = user
             surgeon.save()
-    return render(request, 'createStaff.html', {'staff_form': staff_form, 'user_form':user_form})
+    return render(request, 'createStaff.html', {'staff_form': staff_form, 'user_form': user_form})
 
 
+@login_required
 def create_patient(request):
     user_form = UserForm()
     patient_form = PatientForm()
@@ -77,6 +78,7 @@ def create_patient(request):
             patient = patient_form.save(commit=False)
             patient.user = user
             patient.save()
+            return HttpResponseRedirect(reverse('manage_patients'))
     return render(request, 'createPatient.html', {'patient_form': patient_form, 'user_form': user_form})
 
 
@@ -129,7 +131,7 @@ def create_order(request, patient_id=None, surgeon_id=None):
                 report = Report(name="report")
                 report.save()
                 order = Order(staff=request.user.staff, patient=patient, surgeon=surgeon, report=report)
-                order.save();
+                order.save()
                 create_report_with_files(order.id, upload_report.attributes.path, upload_report.zip_pictures.path)
 
 
@@ -140,6 +142,11 @@ def create_order(request, patient_id=None, surgeon_id=None):
                                                 'surgeon_search_results': surgeon_search_results,
                                                 'patient': patient,
                                                 'surgeon': surgeon})
+
+
+#TODO: Complete this view
+def manage_orders(request):
+    return create_order(request)
 
 
 def create_proficiency(request):
@@ -191,6 +198,7 @@ def edit_patient(request, patient_id):
         if user_form.is_valid() and patient_form.is_valid():
             user_form.save()
             patient_form.save()
+            return HttpResponseRedirect(reverse('manage_patients'))
     return render(request, 'createPatient.html', {'patient_form': patient_form, 'user_form': user_form, 'edit': True, 'patient': patient})
 
 
@@ -308,11 +316,16 @@ def view_order(request, order_id):
 
 
 @login_required
-def manage_patients(request):
+def manage_patients(request, page_num=1):
+    page_num = int(page_num)
+    patient_per_page = 12
     patients = Patient.objects.all()
     search_patient_form = SearchPatientForm()
-    search_results = None
-    searched = False
+    search_results = Patient.objects.all()
+    if (page_num-1)*patient_per_page >= search_results.count():
+        return HttpResponseRedirect(reverse('manage_patients'))
+    lower_bound = (page_num-1)*patient_per_page
+    upper_bound = max(page_num*patient_per_page-1, search_results.count()-1)
     if request.method == 'POST':
         if 'search_patient' in request.POST:
             search_patient_form = SearchPatientForm(request.POST)
@@ -321,11 +334,15 @@ def manage_patients(request):
                     user__first_name__contains=search_patient_form.cleaned_data['first_name'],
                     user__last_name__contains=search_patient_form.cleaned_data['last_name'],
                     national_code__contains=search_patient_form.cleaned_data['national_code'])
-                searched = True
+                if (page_num-1)*patient_per_page >= search_results.count():
+                    page_num = 1
+                lower_bound = (page_num-1)*patient_per_page
+                upper_bound = max(page_num*patient_per_page-1, search_results.count()-1)
+    print lower_bound
+    print upper_bound
     return render(request, 'managePatients.html', {'patients': patients,
                                                    'search_patient_form': search_patient_form,
-                                                   'search_results': search_results,
-                                                   'searched': searched})
+                                                   'search_results': search_results[lower_bound:upper_bound]})
 
 
 @login_required
@@ -386,4 +403,9 @@ def create_report_with_files(order_id, xlsx_path, zip_path):
             pass
 
 
+
+@login_required
+def ajax_delete_patient(request, patient_id):
+    Patient.objects.get(id=patient_id).delete()
+    return render(request, 'json/success.json')
 

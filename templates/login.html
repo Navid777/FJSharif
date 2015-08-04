@@ -1,29 +1,31 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block body %}
-<div class="ui stackable centered grid container">
-	<div class="six wide column">
-		<form method="post" action="" class="ui form segments" style="margin-top: 100px;">
-			{% csrf_token %}
-			<h4 class="ui inverted blue segment center aligned">Login</h4>
-			<div class="ui padded secondary segment">
-			<div class="inline field">
-				<div class="field">
-				<label>Username:</label>
-				<input type="text" name="username" placeholder="Enter your username">
-				</div>
-			</div>
-			<div class="inline field">
-				<div class="field">
-				<label class="" style="display:inline;">Password:</label>
-				<label class="" style="display:inline; float:right;"><a href="#" >Forgot?</a></label>
-				<input type="password" name="password" placeholder="Enter your password">
-				</div>
-			</div>
-			<input type="submit" value="Login" class="ui inverted blue fluid button" style="display:block; margin: 0 auto;">
-			</div>	
-		</form>
-	</div>
-</div>
+    <img src="{% static 'logo.png' %}" style="float: right; margin: 10px;"/>
+    <div class="ui stackable centered grid container">
+        <div class="six wide column">
+            <form method="post" action="" class="ui form segments" style="margin-top: 50px;">
+                {% csrf_token %}
+                <h4 class="ui inverted blue segment center aligned">Login</h4>
+                <div class="ui padded secondary segment">
+                <div class="inline field">
+                    <div class="field">
+                    <label>Username:</label>
+                    <input type="text" name="username" placeholder="Enter your username">
+                    </div>
+                </div>
+                <div class="inline field">
+                    <div class="field">
+                    <label class="" style="display:inline;">Password:</label>
+                    <label class="" style="display:inline; float:right;"><a href="#" >Forgot?</a></label>
+                    <input type="password" name="password" placeholder="Enter your password">
+                    </div>
+                </div>
+                <input type="submit" value="Login" class="ui inverted blue fluid button" style="display:block; margin: 0 auto;">
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
 

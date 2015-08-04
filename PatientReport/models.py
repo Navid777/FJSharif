@@ -56,13 +56,17 @@ class Admin(models.Model):
 
     
 class Patient(models.Model):
-    national_code = models.CharField(max_length=100, unique = True)
+    national_code = models.CharField(max_length=100, unique=True, null=True, blank=True)
     picture = models.ImageField(null=True, blank=True)
     DOB = models.DateField()
+    code = models.CharField(max_length=100, unique=True)
     email = models.EmailField(null=True, blank=True)
     description = models.TextField(max_length=3000, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDERS)
     user = models.OneToOneField(User)
+    phone_number = models.CharField(max_length=100, null=True, blank=True)
+    mobile_number = models.CharField(max_length=100, null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.user.__unicode__()
