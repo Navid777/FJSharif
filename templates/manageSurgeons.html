@@ -10,7 +10,7 @@
             <h2 class="ui header">
                 <i class="search icon"> </i>
                 <div class="content">
-                    Search
+                    Find Surgeon
                     <div class="sub header">Find a surgeon with his personal information.</div>
                 </div>
             </h2>
@@ -27,18 +27,19 @@
                 </div>
                 <button type="submit" class="ui teal right floated button" name="search_surgeon">
                     <i class="search icon"></i>
-                    Search
+                    Filter
                 </button>
             </form>
-            {% if searched %}
-            <h3 class="ui dividing olive header">
-                Search Results
+            <h3 class="ui dividing green header">
+                Surgeons
             </h3>
             <div class="content">
+                <!--
                 <div class="ui {% ifequal search_results.count 0 %}error{% else %}teal{% endifequal %} compact message">
                     Search returned {{ search_results.count }} result{% ifequal search_results.count 1%}{% else %}s{% endifequal %}.
                 </div>
-                <table class="ui green celled table">
+                -->
+                <table class="ui blue celled table">
                     <thead>
                         <th>Surgeon</th>
                         <th>Username</th>
@@ -55,6 +56,10 @@
                                             <div class="sub header">{{ surgeon.proficiency.proficient_title }}</div>
                                         </div>
                                     </a>
+                                    <div class="ui red tiny right floated icon basic button delete_surgeon" data-id="{{ surgeon.id }}">
+                                        <i class="delete icon"></i>
+                                        Delete Surgeon
+                                    </div>
                                 </td>
                                 <td>
                                    {{ surgeon.user.username }}
@@ -70,8 +75,8 @@
                     </tbody>
                 </table>
             </div>
-            {% endif %}
         </div>
+        <!--
         <div style="background-color: #f3f3f3; margin-top:50px;" class="ui clearing olive segment">
             <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_surgeon' %}">
                 <i class="ui plus icon"></i>
@@ -116,5 +121,23 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div></div>
+        </div> -->
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).on('ready', function(){
+            $('.delete_surgeon').on('click', function(){
+                var $surgeon_id = $(this).attr('data-id');
+                if(confirm('Are you sure you want to delete this surgeon?')){
+                    $.ajax({
+                        url: '/ajax/delete/surgeon/'+$surgeon_id ,
+                        success: function(){
+                                    window.location.href="{% url 'manage_surgeons' %}" ;
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 {% endblock %}

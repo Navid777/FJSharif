@@ -209,8 +209,10 @@
                     </div>
                 </div>
 			</div>
-
-			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %}{% if surgeon_user %} Profile{% else %} Surgeon{% endif %}">
+            <div class="ui two buttons">
+            {% include 'createButton.html' with user=surgeon_user type='Surgeon' %}
+            {% include 'discardButton.html' with url='manage_surgeons' %}
+            </div>
 		</form>
 	</div>
 </div>

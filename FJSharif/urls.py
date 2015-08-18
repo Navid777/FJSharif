@@ -45,11 +45,13 @@ urlpatterns = [
     url(r'^manage/patients$', views.manage_patients, name='manage_patients'),
     url(r'^manage/patients/(?P<page_num>\d+)$', views.manage_patients, name='manage_patients'),
     url(r'^manage/surgeons$', views.manage_surgeons, name='manage_surgeons'),
+    url(r'^manage/surgeons/(?P<page_num>\d+)$', views.manage_surgeons, name='manage_surgeons'),
     url(r'^manage/proficiencies$', views.manage_proficiencies, name='manage_proficiencies'),
     url(r'^manage/orders$', views.manage_orders, name='manage_orders'),
     url(r'^manage/alignment_parameter_names$', views.manage_alignment_parameter_names,
         name='manage_alignment_parameter_names'),
     url(r'^ajax/delete/patient/(?P<patient_id>\d+)$', views.ajax_delete_patient),
+    url(r'^ajax/delete/surgeon/(?P<surgeon_id>\d+)$', views.ajax_delete_surgeon),
 ]
 
 if settings.DEBUG:

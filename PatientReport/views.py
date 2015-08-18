@@ -16,7 +16,7 @@ from PatientReport import models
 
 from PatientReport.forms import *
 from PatientReport.models import Patient, Proficiency, AlignmentParameterName, Surgeon, Staff, Order, AlignmentParameter, \
-    Report
+    Report, PrePlanning, Guide
 
 
 # Create your views here.
@@ -49,7 +49,8 @@ def create_surgeon(request):
             surgeon = surgeon_form.save(commit=False)
             surgeon.user = user
             surgeon.save()
-    return render(request, 'createSurgeon.html', {'surgeon_form':surgeon_form, 'user_form':user_form})
+            return HttpResponseRedirect(reverse('manage_surgeons'))
+    return render(request, 'createSurgeon.html', {'surgeon_form': surgeon_form, 'user_form': user_form})
 
 
 def create_staff(request):
@@ -213,6 +214,7 @@ def edit_surgeon(request, surgeon_id):
         if user_form.is_valid() and surgeon_form.is_valid():
             user_form.save()
             surgeon_form.save()
+            return HttpResponseRedirect(reverse('manage_surgeons'))
     return render(request, 'createSurgeon.html', {'surgeon_form': surgeon_form, 'user_form': user_form, 'edit': True,
                                                   'surgeon': surgeon})
 
@@ -311,8 +313,12 @@ def view_order(request, order_id):
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('home'))
     alignment_parameters = AlignmentParameterName.objects.filter(alignmentparameter__report__order=order).distinct()
+    guides = Guide.objects.filter(order=order)
+    pre_plannings = PrePlanning.objects.filter(order=order)
     return render(request, 'order.html', {'order': order,
-                                          'alignment_parameters': alignment_parameters})
+                                          'alignment_parameters': alignment_parameters,
+                                          'guides': guides,
+                                          'pre_plannings': pre_plannings})
 
 
 @login_required
@@ -338,19 +344,22 @@ def manage_patients(request, page_num=1):
                     page_num = 1
                 lower_bound = (page_num-1)*patient_per_page
                 upper_bound = max(page_num*patient_per_page-1, search_results.count()-1)
-    print lower_bound
-    print upper_bound
     return render(request, 'managePatients.html', {'patients': patients,
                                                    'search_patient_form': search_patient_form,
                                                    'search_results': search_results[lower_bound:upper_bound]})
 
 
 @login_required
-def manage_surgeons(request):
+def manage_surgeons(request, page_num=1):
+    page_num = int(page_num)
+    surgeon_per_page = 12
     surgeons = Surgeon.objects.all()
     search_surgeon_form = SearchSurgeonForm()
-    search_results = None
-    searched = False
+    search_results = Surgeon.objects.all()
+    if (page_num-1)*surgeon_per_page >= search_results.count():
+        return HttpResponseRedirect(reverse('manage_surgeons'))
+    lower_bound = (page_num-1)*surgeon_per_page
+    upper_bound = max(page_num*surgeon_per_page-1, search_results.count()-1)
     if request.method == 'POST':
         if 'search_surgeon' in request.POST:
             search_surgeon_form = SearchSurgeonForm(request.POST)
@@ -363,11 +372,13 @@ def manage_surgeons(request):
                     search_results = search_results.filter(gender=search_surgeon_form.cleaned_data['gender'])
                 if search_surgeon_form.cleaned_data['proficiency'] is not None:
                     search_results = search_results.filter(proficiency=search_surgeon_form.cleaned_data['proficiency'])
-                searched = True
+                if (page_num-1)*surgeon_per_page >= search_results.count():
+                    page_num = 1
+                lower_bound = (page_num-1)*surgeon_per_page
+                upper_bound = max(page_num*surgeon_per_page-1, search_results.count()-1)
     return render(request, 'manageSurgeons.html', {'surgeons': surgeons,
                                                    'search_surgeon_form': search_surgeon_form,
-                                                   'search_results': search_results,
-                                                   'searched': searched})
+                                                   'search_results': search_results[lower_bound:upper_bound]})
 
 
 @login_required
@@ -407,5 +418,11 @@ def create_report_with_files(order_id, xlsx_path, zip_path):
 @login_required
 def ajax_delete_patient(request, patient_id):
     Patient.objects.get(id=patient_id).delete()
+    return render(request, 'json/success.json')
+
+
+@login_required
+def ajax_delete_surgeon(request, surgeon_id):
+    Surgeon.objects.get(id=surgeon_id).delete()
     return render(request, 'json/success.json')
 

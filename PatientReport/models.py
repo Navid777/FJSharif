@@ -15,7 +15,7 @@ class Proficiency(models.Model):
     
 
 class Surgeon(models.Model):
-    national_code = models.CharField(max_length=100, unique=True)
+    national_code = models.CharField(max_length=100, unique=True, null=True, blank=True)
     picture = models.ImageField(null=True, blank=True)
     medical_id = models.CharField(max_length=100, null=True, blank=True, unique=True)
     proficiency = models.ForeignKey(Proficiency)
@@ -102,10 +102,11 @@ class Order(models.Model):
     landmarks = models.FileField(null=True, blank=True, upload_to='landmarks/')
     
     def __unicode__(self):
-        return self.patient.__unicode__() + '-' + self.surgeon.__unicode__()
+        return self.patient.__unicode__() + '-' + self.surgeon.__unicode__() + '-' + str(self.id)
 
     
 class Guide(models.Model):
+    name = models.CharField(max_length=100)
     order = models.ForeignKey(Order)
 
     def __unicode__(self):
@@ -113,10 +114,21 @@ class Guide(models.Model):
 
 
 class PrePlanning(models.Model):
+    name = models.CharField(max_length=100)
     order = models.ForeignKey(Order)
 
     def __unicode__(self):
         return self.order.__unicode__()
+
+
+class STLFile(models.Model):
+    name = models.CharField(max_length=100)
+    file = models.FileField(upload_to='stl/')
+    guide = models.ForeignKey(Guide, null=True, blank=True)
+    pre_planning = models.ForeignKey(PrePlanning, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 
 class AlignmentParameterName(models.Model):

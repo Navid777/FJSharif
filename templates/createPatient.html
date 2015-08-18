@@ -226,8 +226,8 @@
                 </div>
             </div>
             <div class="ui two buttons">
-			<input type="submit" class="ui blue button" value="{% if edit %}Save{% elif patient_user %}Create Profile{% else %}Create Patient{% endif %}">
-            <a href="{% url 'manage_patients' %}" class="ui red button">Discard</a>
+			{% include 'createButton.html' with user=patient_user type="Patient" %}
+            {% include 'discardButton.html' with url='manage_patients' %}
             </div>
 		</form>
 	</div>

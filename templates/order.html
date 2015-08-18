@@ -22,6 +22,22 @@
             Left_Tibia		: true,
             Left_Fibula		: true,
             Left_Patella	: true
+            {% for guide in guides %}
+                {% if forloop.first %}
+                    ,
+                {% endif %}
+                {% for stl in guide.stlfile_set.all %}
+                    {{ stl.name }}: true{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            {% endfor %}
+            {% for pre_planning in pre_plannings %}
+                {% if forloop.first %}
+                    ,
+                {% endif %}
+                {% for stl in pre_planning.stlfile_set.all %}
+                    {{ stl.name }}: true{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            {% endfor %}
         }
 
         scene = new THREE.Scene();
@@ -114,6 +130,16 @@
             {% if order.left_patella %}
             Load_and_Add_STL('{{ order.left_patella.url }}','Left_Patella');
             {% endif %}
+            {% for guide in guides %}
+                {% for stl in guide.stlfile_set.all %}
+                Load_and_Add_STL('{{ stl.file.url }}', '{{ stl.name }}')
+                {% endfor %}
+            {% endfor %}
+            {% for pre_planning in pre_plannings %}
+                {% for stl in pre_planning.stlfile_set.all %}
+                Load_and_Add_STL('{{ stl.file.url }}', '{{ stl.name }}')
+                {% endfor %}
+            {% endfor %}
 
             //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-400,0,0); Limbs.Pelvic = mesh;
             //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-300,0,0); Limbs.Right_Femur = mesh;
@@ -148,6 +174,9 @@
             LimbsController.gui = new dat.GUI({width: 200});
             document.getElementById("3d-controls").appendChild(LimbsController.gui.domElement);
 
+            var guides = [];
+            var pre_plannings = [];
+
             {% if order.pelvis %}
             var ShowPelvic = 		LimbsController.gui.addFolder( 'Pelvic' );
             {% endif %}
@@ -157,8 +186,22 @@
             {% if order.left_femur or order.left_fibula or order.left_tibia or order.left_patella %}
             var ShowLeftLimbs = 	LimbsController.gui.addFolder( 'Left Leg' );
             {% endif %}
+            {% for guide in guides %}
+                guides[{{forloop.counter}}] = LimbsController.gui.addFolder('{{ guide.name }}');
+                var index = {{ forloop.counter }}
+                {% for stl in guide.stlfile_set.all %}
+                    guides[index].add(LimbsController, '{{ stl.name }}').name('{{ stl.name }}').onChange(function(value){ UpdateLimbStatus();});
+                {% endfor %}
+            {% endfor %}
+            {% for pre_planning in pre_plannings %}
+                pre_plannings[{{forloop.counter}}] = LimbsController.gui.addFolder('{{ pre_planning.name }}');
+                var index = {{ forloop.counter }}
+                {% for stl in pre_planning.stlfile_set.all %}
+                    pre_plannings[index].add(LimbsController, '{{ stl.name }}').name('{{ stl.name }}').onChange(function(value){ UpdateLimbStatus();});
+                {% endfor %}
+            {% endfor %}
 
-            {% if order.pelvic %}
+            {% if order.pelvis %}
             ShowPelvic.add( LimbsController, "Pelvic" ).onChange(function(value) {UpdateLimbStatus();});
             {% endif %}
             {% if order.right_femur %}
@@ -334,6 +377,4 @@
         </div>
         </div>
     {% endfor %}
-
-
 {% endblock %}
