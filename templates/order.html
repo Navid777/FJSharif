@@ -27,7 +27,7 @@
                     ,
                 {% endif %}
                 {% for stl in guide.stlfile_set.all %}
-                    {{ stl.name }}: true{% if not forloop.last %},{% endif %}
+                    guide{{ forloop.counter }}: true{% if not forloop.last %},{% endif %}
                 {% endfor %}
             {% endfor %}
             {% for pre_planning in pre_plannings %}
@@ -35,7 +35,7 @@
                     ,
                 {% endif %}
                 {% for stl in pre_planning.stlfile_set.all %}
-                    {{ stl.name }}: true{% if not forloop.last %},{% endif %}
+                    preplanning{{ forloop.counter }}: true{% if not forloop.last %},{% endif %}
                 {% endfor %}
             {% endfor %}
         }
@@ -132,12 +132,12 @@
             {% endif %}
             {% for guide in guides %}
                 {% for stl in guide.stlfile_set.all %}
-                Load_and_Add_STL('{{ stl.file.url }}', '{{ stl.name }}')
+                Load_and_Add_STL('{{ stl.file.url }}', 'guide{{ forloop.counter }}')
                 {% endfor %}
             {% endfor %}
             {% for pre_planning in pre_plannings %}
                 {% for stl in pre_planning.stlfile_set.all %}
-                Load_and_Add_STL('{{ stl.file.url }}', '{{ stl.name }}')
+                Load_and_Add_STL('{{ stl.file.url }}', 'preplanning{{ forloop.counter }}')
                 {% endfor %}
             {% endfor %}
 
@@ -190,14 +190,14 @@
                 guides[{{forloop.counter}}] = LimbsController.gui.addFolder('{{ guide.name }}');
                 var index = {{ forloop.counter }}
                 {% for stl in guide.stlfile_set.all %}
-                    guides[index].add(LimbsController, '{{ stl.name }}').name('{{ stl.name }}').onChange(function(value){ UpdateLimbStatus();});
+                    guides[index].add(LimbsController, 'guide{{ forloop.counter }}').name('{{ stl.name }}').onChange(function(value){ UpdateLimbStatus();});
                 {% endfor %}
             {% endfor %}
             {% for pre_planning in pre_plannings %}
                 pre_plannings[{{forloop.counter}}] = LimbsController.gui.addFolder('{{ pre_planning.name }}');
                 var index = {{ forloop.counter }}
                 {% for stl in pre_planning.stlfile_set.all %}
-                    pre_plannings[index].add(LimbsController, '{{ stl.name }}').name('{{ stl.name }}').onChange(function(value){ UpdateLimbStatus();});
+                    pre_plannings[index].add(LimbsController, 'preplanning{{ forloop.counter }}').name('{{ stl.name }}').onChange(function(value){ UpdateLimbStatus();});
                 {% endfor %}
             {% endfor %}
 
@@ -229,7 +229,7 @@
             ShowLeftLimbs.add( LimbsController, "Left_Patella" )	.name("Left Patella").onChange(function(value) {UpdateLimbStatus();});;
             {% endif %}
 
-            {% if order.pelvic %}
+            {% if order.pelvis %}
             ShowPelvic.open();
             {% endif %}
             {% if order.right_femur or order.right_fibula or order.right_patella or order.right_tibia %}
