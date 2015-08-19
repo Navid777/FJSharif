@@ -300,25 +300,40 @@ def view_patient(request, patient_id):
         orders = Order.objects.filter(patient=patient, surgeon=surgeon)
     except ObjectDoesNotExist:
         orders = Order.objects.filter(patient=patient)
-    if orders.count() == 1:
-        return HttpResponseRedirect(reverse('view_order', args=[orders[0].id]))
-    else:
-        return render(request, 'patient.html', {'patient': patient, 'orders': orders})
+    return render(request, 'patient.html', {'patient': patient, 'orders': orders})
 
 
 @login_required
-def view_order(request, order_id):
+def view_report(request, order_id):
     try:
         order = Order.objects.get(id=order_id)
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('home'))
     alignment_parameters = AlignmentParameterName.objects.filter(alignmentparameter__report__order=order).distinct()
+    return render(request, 'report.html', {'order': order,
+                                           'alignment_parameters': alignment_parameters,})
+
+
+@login_required
+def view_guides(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('home'))
     guides = Guide.objects.filter(order=order)
+    return render(request, 'guides.html', {'order': order,
+                                           'guides': guides})\
+
+
+@login_required
+def view_pre_plannings(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('home'))
     pre_plannings = PrePlanning.objects.filter(order=order)
-    return render(request, 'order.html', {'order': order,
-                                          'alignment_parameters': alignment_parameters,
-                                          'guides': guides,
-                                          'pre_plannings': pre_plannings})
+    return render(request, 'prePlannings.html', {'order': order,
+                                           'pre_plannings': pre_plannings})
 
 
 @login_required

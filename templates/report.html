@@ -1,0 +1,340 @@
+{% extends template_base %}
+{% load filters %}
+{% load staticfiles %}
+{% block js %}
+    <script src="{% static "js/three.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/dat.gui.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/OrbitControls.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/stats.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/STLLoader.js" %}" type="text/javascript"></script>
+    <script>
+        var scene, camera, renderer;
+
+        var Limbs = new Object();
+
+        var LimbsController = {
+            Pelvic			: true,
+            Right_Femur		: true,
+            Right_Tibia		: true,
+            Right_Fibula	: true,
+            Right_Patella	: true,
+            Left_Femur		: true,
+            Left_Tibia		: true,
+            Left_Fibula		: true,
+            Left_Patella	: true
+        }
+
+        scene = new THREE.Scene();
+
+        initGUI();
+        init();
+        animate();
+
+        function init() {
+            //var WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+            //var WIDTH = window.innerWidth-250, HEIGHT = 800;
+            var WIDTH = document.getElementById("3d-canvas").offsetWidth, HEIGHT= document.getElementById("3d-canvas").offsetHeight
+
+            renderer = new THREE.WebGLRenderer({antialias:true});
+            renderer.setSize(WIDTH, HEIGHT);
+            document.getElementById("3d-canvas").appendChild( renderer.domElement );
+
+            camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
+            //camera = new THREE.OrthographicCamera( - WIDTH / 2, WIDTH / 2, HEIGHT / 2, -HEIGHT / 2, 0.1, 20000 );
+            camera.position.set(0,-1200,0);
+            camera.up.set(0, 0, 1);
+            scene.add(camera);
+
+            // Create an event listener that resizes the renderer with the browser window.
+            window.addEventListener('resize', function() 	{
+                //var WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+               var WIDTH = document.getElementById("3d-canvas").offsetWidth, HEIGHT= document.getElementById("3d-canvas").offsetHeight
+                renderer.setSize(WIDTH, HEIGHT);
+                camera.aspect = WIDTH / HEIGHT;
+                camera.updateProjectionMatrix();   			});
+
+            // Set the background color of the scene.
+            renderer.setClearColor(0x333F47, 1);
+
+            // Create a light, set its position, and add it to the scene.
+            var light1 = new THREE.PointLight(0xffffff);
+            var light2 = new THREE.PointLight(0xffffff);
+
+            light1.position.set(800,-400,600);
+            light2.position.set(-800,600,-800);
+
+            scene.add(light1);
+            scene.add(light2);
+
+            CreateLimbs();
+            UpdateLimbStatus();
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+	 }//end function
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            renderer.render(scene, camera);
+            controls.update();
+        }//end function
+
+        function CreateLimbs(){
+            var loader = new THREE.STLLoader();
+
+            //var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+            var material = new THREE.MeshPhongMaterial( { color: 0xffff00, specular: 0xffff00, shininess: 20 } );
+
+            var geometry = new THREE.BoxGeometry( 100, 100, 100 );
+
+            {% if order.pelvis %}
+            Load_and_Add_STL('{{ order.report.pelvis.url }}','Pelvic');
+            {% endif %}
+            {% if order.right_femur%}
+            Load_and_Add_STL('{{ order.right_femur.url }}','Right_Femur');
+            {% endif %}
+            {% if  order.right_tibia %}
+            Load_and_Add_STL('{{ order.right_tibia.url }}','Right_Tibia');
+            {% endif %}
+            {% if  order.right_fibula %}
+            Load_and_Add_STL('{{ order.right_fibula.url }}','Right_Fibula');
+            {% endif %}
+            {% if order.right_patella %}
+            Load_and_Add_STL('{{ order.right_patella.url }}','Right_Patella');
+            {% endif %}
+            {% if order.left_femur %}
+            Load_and_Add_STL('{{ order.left_femur.url }}','Left_Femur');
+            {% endif %}
+            {% if order.left_tibia %}
+            Load_and_Add_STL('{{ order.left_tibia.url }}','Left_Tibia');
+            {% endif %}
+            {% if order.left_fibula %}
+            Load_and_Add_STL('{{ order.left_fibula.url }}','Left_Fibula');
+            {% endif %}
+            {% if order.left_patella %}
+            Load_and_Add_STL('{{ order.left_patella.url }}','Left_Patella');
+            {% endif %}
+
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-400,0,0); Limbs.Pelvic = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-300,0,0); Limbs.Right_Femur = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-200,0,0); Limbs.Right_Tibia = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(-100,0,0); Limbs.Right_Fibula = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(0,0,0)  ; Limbs.Right_Patella = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(100,0,0); Limbs.Left_Femur = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(200,0,0); Limbs.Left_Tibia = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(300,0,0); Limbs.Left_Fibula = mesh;
+            //var mesh = new THREE.Mesh( geometry, material );mesh.position.set(400,0,0); Limbs.Left_Patella = mesh;
+
+            function Load_and_Add_STL(url,Limb){
+                loader.load(url, function ( geometry ) {
+		    var mesh = new THREE.Mesh( geometry, material );
+
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+
+                    Limbs[Limb] = mesh;
+		    UpdateLimbStatus();
+                });
+            }//end function
+        }//end function
+
+        function UpdateLimbStatus(){
+            for(Limb in Limbs){
+                if (LimbsController[Limb]==true){scene.add(Limbs[Limb]);}else{scene.remove(Limbs[Limb]);}
+            } //end for
+        } //end function
+
+        function initGUI() {
+            LimbsController.gui = new dat.GUI({width: 200});
+            document.getElementById("3d-controls").appendChild(LimbsController.gui.domElement);
+
+            var guides = [];
+            var pre_plannings = [];
+
+            {% if order.pelvis %}
+            var ShowPelvic = 		LimbsController.gui.addFolder( 'Pelvic' );
+            {% endif %}
+            {% if order.right_femur or order.right_fibula or order.right_patella or order.right_tibia %}
+            var ShowRightLimbs = 	LimbsController.gui.addFolder( 'Right Leg' );
+            {% endif %}
+            {% if order.left_femur or order.left_fibula or order.left_tibia or order.left_patella %}
+            var ShowLeftLimbs = 	LimbsController.gui.addFolder( 'Left Leg' );
+            {% endif %}
+
+            {% if order.pelvis %}
+            ShowPelvic.add( LimbsController, "Pelvic" ).onChange(function(value) {UpdateLimbStatus();});
+            {% endif %}
+            {% if order.right_femur %}
+            ShowRightLimbs.add( LimbsController, "Right_Femur" )	.name("Right Femur").onChange(function(value) {UpdateLimbStatus();});
+            {% endif %}
+            {% if order.right_tibia %}
+            ShowRightLimbs.add( LimbsController, "Right_Tibia" )	.name("Right Tibia").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.right_fibula %}
+            ShowRightLimbs.add( LimbsController, "Right_Fibula" )	.name("Right Fibula").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.right_patella %}
+            ShowRightLimbs.add( LimbsController, "Right_Patella" )	.name("Right Patella").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_femur %}
+            ShowLeftLimbs.add( LimbsController, "Left_Femur" )		.name("Left Femur").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_tibia %}
+            ShowLeftLimbs.add( LimbsController, "Left_Tibia" )		.name("Left Tibia").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_fibula %}
+            ShowLeftLimbs.add( LimbsController, "Left_Fibula" )		.name("Left Fibula").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+            {% if order.left_patella %}
+            ShowLeftLimbs.add( LimbsController, "Left_Patella" )	.name("Left Patella").onChange(function(value) {UpdateLimbStatus();});;
+            {% endif %}
+
+            {% if order.pelvis %}
+            ShowPelvic.open();
+            {% endif %}
+            {% if order.right_femur or order.right_fibula or order.right_patella or order.right_tibia %}
+            ShowRightLimbs.open();
+            {% endif %}
+            {% if order.left_femur or order.left_fibula or order.left_tibia or order.left_patella %}
+            ShowLeftLimbs.open();
+            {% endif %}
+        }//end function
+
+    </script>
+{% endblock %}
+{% block body %}
+    {{ order.attrs }}
+    <div class="ui container">
+            <div class="ui grid">
+            <div class="three wide column">
+                <a class="ui olive card" href="{% url 'view_patient' patient_id=order.patient.id %}">
+                    <div class="content">
+                        <img class="right floated ui large image" src="{{ order.patient|person_picture }}">
+                        <div class="header">{{ order.patient.user.get_full_name|title }}</div>
+                        <div class="meta">{{ order.patient.age|age }}</div>
+                        <div class="description">{{ order.patient|description }}</div>
+                    </div>
+                </a>
+            </div>
+            <div class="thirteen wide column">
+                <div id="3d-canvas-container" style="position: relative; border-radius: 5px;">
+                    <div id="3d-canvas" style="height:500px; width: 100%; margin:0; float:left; border-radius: 100px;"></div>
+                    <div id="3d-controls" style="width:20%; height: 500px; position:absolute; right:0; top:0;"></div>
+                </div>
+            </div>
+        </div>
+            <h3 class="ui dividing header">
+                Alignment Parameters
+            </h3>
+            <div class="ui six link cards" style="margin-top:10px;">
+                    {% for alignment_parameter in alignment_parameters %}
+                        <div class="ui olive card alignment" data-id="{{ alignment_parameter.name }}">
+                            <div class="ui image">
+                              <img src="{{ alignment_parameter|picture }}">
+                            </div>
+                            <div class="content">
+                              <div class="header">{{ alignment_parameter.name|title }}</div>
+                              <div class="meta">
+                                Type icon
+                              </div>
+                              <div class="description">
+                                  <div style="margin-bottom: 10px;">
+                                      <label class="ui  small {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label">
+                                          Left Value
+                                        <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L'%}</div>
+                                      </label>
+
+                                  </div>
+                                  <div>
+                                      <label class="ui small {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label">
+                                          Right Value
+                                      <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R'%}</div>
+                                      </label>
+                                  </div>
+                                {{ alignment_parameter.description}}
+                              </div>
+                            </div>
+                          </div>
+                    {% endfor  %}
+            </div>
+    </div>
+    {% for alignment_parameter in alignment_parameters %}
+        <div class="ui modal" data-id="{{ alignment_parameter.name }}">
+        <i class="close icon"></i>
+        <div class="ui header">{{ alignment_parameter.name }}</div>
+        <div class="content">
+            {% ifequal alignment_parameter.direction 'V' %}
+            <div class="ui two cards">
+                <div class="card">
+                    <div class="ui image">
+                        <img src="{% alignment_parameter_picture type='L' parameter_name=alignment_parameter.name order=order %}" style="height:400px; width:auto; margin:0 auto;"/>
+                    </div>
+                    <div class="content">
+                        <div class="header">Left</div>
+                        <div class="green meta">Min:{{ alignment_parameter.min_value | floatformat }}</div>
+                        <div class="meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
+                        <div class="description">
+                            <label class="ui {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ui large image">
+                        <img src="{% alignment_parameter_picture type='R' parameter_name=alignment_parameter.name order=order %}" style="height:400px; width:auto; margin:0 auto;"/>
+                    </div>
+                    <div class="content bottom aligned">
+                        <div class="header">Right</div>
+                        <div class="green meta">Min:{{ alignment_parameter.min_value | floatformat }}</div>
+                        <div class="meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
+                        <div class="description">
+                            <label class="ui {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="ui segments">
+                    <div class="segment">
+                        <div class="ui image" style="width: 70%; padding:10px; display:inline-block;">
+                            <img src="{% alignment_parameter_picture type='L' parameter_name=alignment_parameter.name order=order %}"  style="width:100%; height:auto;"/>
+                        </div>
+                        <div style="width:25%; display:inline-block;" class="ui segment">
+                            <div class="ui dividing header">Left</div>
+                            <div class="ui meta">Min: {{ alignment_parameter.min_value | floatformat }}</div>
+                            <div class="ui meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
+                            <label class="ui large {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='L' %} label" style="margin-top:10px; margin-left:0;">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='L' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="segment">
+                        <div class="ui image" style="width: 70%; padding:10px; display:inline-block;">
+                            <img src="{% alignment_parameter_picture type='R' parameter_name=alignment_parameter.name order=order %}"  style="width:100%; height:auto;"/>
+                        </div>
+                        <div style="width:25%; display:inline-block;" class="ui segment">
+                            <div class="ui dividing header">Right</div>
+                            <div class="ui meta">Min: {{ alignment_parameter.min_value | floatformat }}</div>
+                            <div class="ui meta">Max: {{ alignment_parameter.max_value | floatformat }}</div>
+                            <label class="ui large {% alignment_parameter_color order=order parameter_name=alignment_parameter.name type='R' %} label" style="margin-top:10px; margin-left:0;">
+                                Value
+                                <div class="detail">{% alignment_parameter_value order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                                <div class="detail">{% alignment_parameter_status order=order parameter_name=alignment_parameter.name type='R' %}</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            {% endifequal %}
+        </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -18,7 +18,7 @@
                 <h2 class="ui olive header">Orders</h2>
                 <div class="ui divider"></div>
                 {% for order in orders %}
-                    <a class="ui fluid teal card" href="{% url 'view_order' order_id=order.id %}">
+                    <div class="ui fluid teal card">
                         <div class="content">
                             <div class="header">
                                 Order {{ forloop.counter }}
@@ -39,9 +39,14 @@
                                         {{ order | diagnosis }}
                                     </div>
                                 </div>
+                                <div class="ui three buttons" style="margin-top: 10px;">
+                                    <div class="ui basic blue {% ifequal order.report none %} disabled {% endifequal %}button" onclick="window.location.href='{% url 'view_report' order_id=order.id %}'">View Report</div>
+                                    <div class="ui basic teal {% ifequal order.guide_set.all.count 0%} disabled {% endifequal %}button" onclick="window.location.href='{% url 'view_guides' order_id=order.id %}'">View Guides</div>
+                                    <div class="ui basic violet {% ifequal order.preplanning_set.all.count 0%} disabled {% endifequal %}button" onclick="window.location.href='{% url 'view_pre_plannings' order_id=order.id %}'">View PrePlannings</div>
+                                </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
