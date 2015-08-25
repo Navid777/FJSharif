@@ -165,6 +165,7 @@ def create_alignment_parameter_name(request):
         form = AlignmentParameterNameForm(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect(reverse('manage_alignment_parameter_names'))
     return render(request, 'createAlignmentParameterName.html', {'form': form})
 
 
@@ -185,6 +186,7 @@ def edit_alignment_parameter_name(request, alignment_parameter_name_id):
         form = AlignmentParameterNameForm(request.POST, instance=alignment_parameter_name)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect(reverse('manage_alignment_parameter_names'))
     return render(request, 'createAlignmentParameterName.html', {'form': form, 'edit': True})
 
 
@@ -322,7 +324,7 @@ def view_guides(request, order_id):
         return HttpResponseRedirect(reverse('home'))
     guides = Guide.objects.filter(order=order)
     return render(request, 'guides.html', {'order': order,
-                                           'guides': guides})\
+                                           'guides': guides})
 
 
 @login_required
@@ -334,6 +336,13 @@ def view_pre_plannings(request, order_id):
     pre_plannings = PrePlanning.objects.filter(order=order)
     return render(request, 'prePlannings.html', {'order': order,
                                            'pre_plannings': pre_plannings})
+
+
+@login_required
+def view_patients(request, surgeon_id):
+    surgeon = Surgeon.objects.get(id=surgeon_id)
+    patients = Patient.objects.filter(order__surgeon=surgeon).distinct()
+    return render(request, 'patients.html', {'surgeon': surgeon, 'patients': patients})
 
 
 @login_required
@@ -439,5 +448,11 @@ def ajax_delete_patient(request, patient_id):
 @login_required
 def ajax_delete_surgeon(request, surgeon_id):
     Surgeon.objects.get(id=surgeon_id).delete()
+    return render(request, 'json/success.json')
+
+
+@login_required
+def ajax_delete_alignment_parameter_name(request, parameter_id):
+    AlignmentParameterName.objects.get(id=parameter_id).delete()
     return render(request, 'json/success.json')
 

@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^edit/surgeon/(?P<surgeon_id>\d+)$', views.edit_surgeon, name='edit_surgeon'),
     url(r'^edit/staff/(?P<staff_id>\d+)$', views.edit_staff, name='edit_staff'),
     url(r'^home$', views.home, name='home'),
+    url(r'^view/patients/(?P<surgeon_id>\d+)$', views.view_patients, name='view_patients'),
     url(r'^view/patient/(?P<patient_id>\d+)$', views.view_patient, name='view_patient'),
     url(r'^view/report/(?P<order_id>\d+)$', views.view_report, name='view_report'),
     url(r'^view/guides/(?P<order_id>\d+)$', views.view_guides, name='view_guides'),
@@ -54,6 +55,7 @@ urlpatterns = [
         name='manage_alignment_parameter_names'),
     url(r'^ajax/delete/patient/(?P<patient_id>\d+)$', views.ajax_delete_patient),
     url(r'^ajax/delete/surgeon/(?P<surgeon_id>\d+)$', views.ajax_delete_surgeon),
+    url(r'^ajax/delete/alignment_parameter_name/(?P<parameter_id>\d+)$', views.ajax_delete_alignment_parameter_name),
 ]
 
 if settings.DEBUG:

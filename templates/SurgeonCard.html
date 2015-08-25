@@ -1,0 +1,43 @@
+{% load filters %}
+<a class="ui link blue {% if operation %}special{% endif %} card">
+    <div class="{% if operation %}bluring dimmable{% endif %} image">
+        {% if operation %}
+        <div class="ui dimmer">
+            <div class="content">
+                <div class="center">
+                    <div class="ui two buttons" style="display: block;">
+                        <div class="ui  blue button" onclick='window.location.href="{% url 'edit_surgeon' surgeon_id=surgeon.id %}"'>
+                            Edit Profile
+                        </div>
+                        <div class="ui  teal button" onclick='window.location.href="{% url 'view_patients' surgeon_id=surgeon.id %}"'>
+                            Patients
+                        </div>
+
+                    </div>
+                    <div class="ui  buttons" style="display: block; margin-top:10px;">
+                        <div class="ui red button delete_surgeon" data-id="{{ surgeon.id }}">
+                            Delete
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <img src="{{ surgeon | person_picture }}"/>
+    </div>
+    <div class="content">
+        <div class="header">{{ surgeon.user.get_full_name|title }}</div>
+        <div class="meta">{{ surgeon.proficiency.proficient_title | title }}</div>
+        {% if surgeon.mobile_number %}
+            <div class="description">
+                Mobile Number: {{ surgeon.mobile_number }}
+            </div>
+        {% endif %}
+        <!-- TODO: Fix this! -->
+        {% if surgeon.user.email %}
+            <div class="description">
+                Email: {{ surgeon.user.email }}
+            </div>
+        {% endif %}
+    </div>
+</a>

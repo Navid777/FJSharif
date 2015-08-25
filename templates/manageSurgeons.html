@@ -39,7 +39,7 @@
                     Search returned {{ search_results.count }} result{% ifequal search_results.count 1%}{% else %}s{% endifequal %}.
                 </div>
                 -->
-                <table class="ui blue celled table">
+               <!-- <table class="ui blue celled table">
                     <thead>
                         <th>Surgeon</th>
                         <th>Username</th>
@@ -74,6 +74,12 @@
                         {% endfor %}
                     </tbody>
                 </table>
+            -->
+                <div class="ui four cards">
+                    {% for surgeon in search_results %}
+                        {% include 'surgeonCard.html' with operation=True surgeon=surgeon %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <!--
@@ -137,6 +143,9 @@
                         }
                     })
                 }
+            });
+            $('.special.card .image').dimmer({
+                  on: 'hover'
             });
         });
     </script>

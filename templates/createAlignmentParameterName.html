@@ -1,8 +1,8 @@
 {% extends template_base%}
 
 {% block body%}
-<div class="ui stackable centered two column grid container">
-	<div class="column standard">		
+<div class="ui stackable grid centered container">
+	<div class="thirteen wide column standard">
 		<form class="ui {% if form.errors %} error {%endif%} form"  action="" method="post"  enctype="multipart/form-data">
 			{% csrf_token %}
 			<h2 class="ui dividing header blue">{% if edit %}Edit{% else %}Add an{% endif %} Alignment Parameter</h2>
@@ -26,8 +26,13 @@
 				{{ field }}
 			</div>
 			{% endfor %}
-			<input type="submit" class="ui fluid button blue" value="{% if edit %}Edit{% else %}Create{% endif %} Alignment Parameter">
-		</form>
+            <div class="ui two buttons">
+			<input type="submit" class="ui fluid button blue" value="{% if edit %}Save{% else %}Create Alignment Parameter{% endif %}">
+		    {% include 'discardButton.html' with url='manage_alignment_parameter_names' %}
+            </div>
+        </form>
 	</div>
 </div>
 {% endblock %}
+
+

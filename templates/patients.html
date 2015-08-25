@@ -1,0 +1,39 @@
+{% extends template_base %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+    <div class="ui clearing olive segment" style="background-color: #f3f3f3;">
+        <div class="ui eight cards">
+        {% include 'surgeonCard.html' with surgeon=surgeon operation=False %}
+        </div>
+        <h3 class="ui blue header">{{ surgeon.user.last_name|title}}'s Patients</h3>
+        <div class="ui divider"></div>
+        <div class="ui four cards">
+        {% for patient in patients %}
+            {% include 'patientCard.html' with patient=patient operation=True %}
+        {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).on('ready', function(){
+            $('.delete_patient').on('click', function(){
+                var $patient_id = $(this).attr('data-id');
+                if(confirm('Are you sure you want to delete this patient?')){
+                    $.ajax({
+                        url: '/ajax/delete/patient/'+$patient_id ,
+                        success: function(){
+                                    window.location.href="{% url 'manage_patients' %}" ;
+                        }
+                    })
+                }
+            });
+            $('.special.card .image').dimmer({
+                  on: 'hover'
+                });
+        });
+    </script>
+{% endblock %}

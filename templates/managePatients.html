@@ -41,7 +41,7 @@
             -->
                 <div class="ui four link cards">
                 {% for patient in search_results%}
-                    {% include 'patient_card.html' with patient=patient operation=True%}
+                    {% include 'patientCard.html' with patient=patient operation=True%}
                 {% endfor %}
                 </div>
             <!--
