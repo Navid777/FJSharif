@@ -1,0 +1,90 @@
+{% extends template_base %}
+{% load filters %}
+{% block body %}
+    <div class="ui container">
+        <div class="ui clearing olive segment" style="background-color: #f3f3f3;">
+            <a class="ui labeled icon tiny blue button" style="float:right;" href="{% url 'create_order' %}">
+                <i class="ui plus icon"></i>
+                New Order
+            </a>
+            <h2 class="ui header">
+                <i class="options icon"> </i>
+                <div class="content">
+                    Manage Orders
+                </div>
+            </h2>
+            <div class="ui divider"></div>
+            <table class="ui blue sortable celled table">
+                <thead>
+                    <th>Surgeon</th>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>View</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                             <td>
+                                <div class="ui image header">
+                                    <img src="{{ order.surgeon|person_picture }}" class="ui mini rounded image"/>
+                                    <div class="content">{{ order.surgeon.user.get_full_name|title}}
+                                        <div class="sub header">{{ order.surgeon.proficiency.proficient_title }}</div>
+                                    </div>
+                                </div>
+
+                             </td>
+                            <td>
+                                <div class="ui image header">
+                                    <img src="{{ order.patient|person_picture }}" class="ui mini rounded image"/>
+                                    <div class="content">{{ order.patient.user.get_full_name|title}}
+                                        <div class="sub header">{{ order.patient.age|age }}</div>
+                                    </div>
+                                </div>
+                             </td>
+                            <td>
+                               {{ order| date }}
+                            </td>
+                            <td>
+                               {{ order.description }}
+                            </td>
+                            <td>
+                                <div class="ui basic blue tiny fluid {% ifequal order.report none %} disabled {% endifequal %}button" onclick="window.location.href='{% url 'view_report' order_id=order.id %}'">View Report</div>
+                                <div class="ui basic teal tiny fluid {% ifequal order.guide_set.all.count 0%} disabled {% endifequal %}button" onclick="window.location.href='{% url 'view_guides' order_id=order.id %}'">View Guides</div>
+                                <div class="ui basic violet tiny fluid {% ifequal order.preplanning_set.all.count 0%} disabled {% endifequal %}button" onclick="window.location.href='{% url 'view_pre_plannings' order_id=order.id %}'">View PrePlannings</div>
+                            </td>
+                            <td>
+                                <div class="ui tiny right floated fluid basic red icon button delete_order" data-id="{{ order.id }}">
+                                     <i class="ui delete icon"></i>
+                                    Delete
+                                 </div>
+                                <a class="ui tiny right floated fluid basic blue icon button" href="{% url 'edit_order' order_id=order.id %}">
+                                     <i class="ui edit icon"></i>
+                                    Edit
+                                 </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).on('ready', function(){
+            $('.delete_order').on('click', function(){
+                var $order_id = $(this).attr('data-id');
+                if(confirm('Are you sure you want to delete this order?')){
+                    $.ajax({
+                        url: '/ajax/delete/order/'+ $order_id ,
+                        success: function(){
+                                    window.location.href="{% url 'manage_orders' %}" ;
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+{% endblock %}

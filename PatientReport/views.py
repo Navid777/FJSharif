@@ -147,7 +147,8 @@ def create_order(request, patient_id=None, surgeon_id=None):
 
 #TODO: Complete this view
 def manage_orders(request):
-    return create_order(request)
+    orders = Order.objects.all()
+    return render(request, 'manageOrders.html', {'orders': orders})
 
 
 def create_proficiency(request):
@@ -233,6 +234,10 @@ def edit_staff(request, staff_id):
             user_form.save()
             staff_form.save()
     return render(request, 'createStaff.html', {'staff_form': staff_form, 'user_form': user_form, 'edit': True, 'staff': staff})
+
+
+def edit_order(request, order_id):
+    return HttpResponseRedirect(reverse('manage_orders'))
 
 
 @login_required
@@ -454,5 +459,11 @@ def ajax_delete_surgeon(request, surgeon_id):
 @login_required
 def ajax_delete_alignment_parameter_name(request, parameter_id):
     AlignmentParameterName.objects.get(id=parameter_id).delete()
+    return render(request, 'json/success.json')
+
+
+@login_required
+def ajax_delete_order(request, order_id):
+    Order.objects.get(id=order_id).delete()
     return render(request, 'json/success.json')
 

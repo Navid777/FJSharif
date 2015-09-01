@@ -100,6 +100,7 @@ class Order(models.Model):
     left_patella = models.FileField(null=True, blank=True, upload_to='stl/')
     pelvis = models.FileField(null=True, blank=True, upload_to='stl/')
     landmarks = models.FileField(null=True, blank=True, upload_to='landmarks/')
+    description = models.TextField(null=True, blank=True)
     
     def __unicode__(self):
         return self.patient.__unicode__() + '-' + self.surgeon.__unicode__() + '-' + str(self.id)
