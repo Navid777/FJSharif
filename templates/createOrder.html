@@ -43,14 +43,14 @@
                 <div class="descriptions">Choose a surgeon for this order</div>
             </div>
         </div>
-        <div class="{% if surgeon %}active{% else %}disabled{% endif %} step">
+        <div class="{% if not surgeon %}disabled{% elif not has_properties %}active{% endif %} step">
             <i class="settings icon"></i>
             <div class="content">
                 <div class="title">Order Properties</div>
                 <div class="descriptions">Upload the order's properties</div>
             </div>
         </div>
-        <div class="{% if surgeon %}active{% else %}disabled{% endif %} step">
+        <div class="{% if has_properties %}active{% else %}disabled{% endif %} step">
             <i class="upload icon"></i>
             <div class="content">
                 <div class="title">Uploading Files</div>

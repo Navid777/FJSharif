@@ -13,3 +13,5 @@ admin.site.register(AlignmentParameterName)
 admin.site.register(Order)
 admin.site.register(Proficiency)
 admin.site.register(STLFile)
+admin.site.register(UploadReport)
+

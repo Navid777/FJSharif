@@ -78,6 +78,7 @@ class Patient(models.Model):
 class Report(models.Model):
     name = models.CharField(max_length=300)
     x_ray = models.ImageField(null=True, blank=True, upload_to='X-Ray/')
+    pdf = models.FileField(null=True, blank=True, upload_to='Report_PDFs/')
     
     def __unicode__(self):
         return self.name
@@ -109,6 +110,7 @@ class Order(models.Model):
 class Guide(models.Model):
     name = models.CharField(max_length=100)
     order = models.ForeignKey(Order)
+    description = models.TextField()
 
     def __unicode__(self):
         return self.order.__unicode__()
@@ -117,6 +119,7 @@ class Guide(models.Model):
 class PrePlanning(models.Model):
     name = models.CharField(max_length=100)
     order = models.ForeignKey(Order)
+    description = models.TextField()
 
     def __unicode__(self):
         return self.order.__unicode__()
@@ -164,8 +167,18 @@ class AlignmentParameter(models.Model):
 
 
 class UploadReport(models.Model):
-    attributes = models.FileField(upload_to='temp')
-    zip_pictures = models.FileField(upload_to='temp')
+    attributes = models.FileField(null=True, blank=True, upload_to='temp', verbose_name='Report Attributes( an Excel file)')
+    zip_pictures = models.FileField(null=True, blank=True, upload_to='temp', verbose_name='Report Pictures( a Zip file)')
+    report = models.FileField(null=True, blank=True, upload_to='temp', verbose_name='Report( a PDF report file)')
+    landmarks = models.FileField(null=True, blank=True, upload_to='temp', verbose_name='Report Landmarks')
+    guide_stls = models.FileField(null=True, blank=True, upload_to='temp', verbose_name='Guides\' STL Files( a Zip file)')
+    pre_stls = models.FileField(null=True, blank=True, upload_to='temp', verbose_name='Preplannings\' STL Files( a Zip file)')
+
+    def __unicode__(self):
+        return 'upload_report_'+str(self.id)
+
+
+
 
 
 

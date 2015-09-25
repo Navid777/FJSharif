@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^create/order$', views.create_order, name='create_order'),
     url(r'^create/order/(?P<patient_id>\d+)$', views.create_order, name='create_order'),
     url(r'^create/order/(?P<patient_id>\d+)/(?P<surgeon_id>\d+)$', views.create_order, name='create_order'),
+    url(r'^create/order/(?P<patient_id>\d+)/(?P<surgeon_id>\d+)/(?P<has_properties>\w+)$', views.create_order, name='create_order'),
     url(r'^edit/patient/(?P<patient_id>\d+)$', views.edit_patient, name='edit_patient'),
     url(r'^edit/surgeon/(?P<surgeon_id>\d+)$', views.edit_surgeon, name='edit_surgeon'),
     url(r'^edit/staff/(?P<staff_id>\d+)$', views.edit_staff, name='edit_staff'),
@@ -58,6 +59,8 @@ urlpatterns = [
     url(r'^ajax/delete/surgeon/(?P<surgeon_id>\d+)$', views.ajax_delete_surgeon),
     url(r'^ajax/delete/alignment_parameter_name/(?P<parameter_id>\d+)$', views.ajax_delete_alignment_parameter_name),
     url(r'^ajax/delete/order/(?P<order_id>\d+)$', views.ajax_delete_order),
+
+    url(r'test$', views.test),
 ]
 
 if settings.DEBUG:

@@ -8,15 +8,17 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.uploadhandler import TemporaryFileUploadHandler
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from openpyxl import load_workbook
+from os import listdir
 from FJSharif.settings import MEDIA_URL, MEDIA_ROOT
 from PatientReport import models
 
 from PatientReport.forms import *
 from PatientReport.models import Patient, Proficiency, AlignmentParameterName, Surgeon, Staff, Order, AlignmentParameter, \
-    Report, PrePlanning, Guide
+    Report, PrePlanning, Guide, STLFile
 
 
 # Create your views here.
@@ -95,13 +97,15 @@ def create_report(request):
 
 
 @login_required
-def create_order(request, patient_id=None, surgeon_id=None):
+def create_order(request, patient_id=None, surgeon_id=None, has_properties=False):
     patient = None
     if patient_id:
         patient = Patient.objects.get(id=patient_id)
     surgeon = None
     if surgeon_id:
         surgeon = Surgeon.objects.get(id=surgeon_id)
+    if has_properties == 'True' or has_properties == 'true':
+        has_properties = True
     search_patient_form = SearchPatientForm()
     search_surgeon_form = SearchSurgeonForm()
     patient_search_results = Patient.objects.all()
@@ -129,11 +133,34 @@ def create_order(request, patient_id=None, surgeon_id=None):
             upload_report_form = UploadReportForm(request.POST, request.FILES)
             if upload_report_form.is_valid():
                 upload_report = upload_report_form.save()
-                report = Report(name="report")
-                report.save()
-                order = Order(staff=request.user.staff, patient=patient, surgeon=surgeon, report=report)
+                order = Order(staff=request.user.staff, patient=patient, surgeon=surgeon)
                 order.save()
-                create_report_with_files(order.id, upload_report.attributes.path, upload_report.zip_pictures.path)
+                if upload_report.guide_stls:
+                    create_guide_with_files(order.id, upload_report.guide_stls.path)
+                if upload_report.zip_pictures and upload_report.attributes:
+                    report = Report(name="report")
+                    report.save()
+                    order.report = report
+                    order.save()
+                    if upload_report.landmarks:
+                        order.landmarks = upload_report.landmarks
+                    if upload_report.report:
+                        report.pdf = upload_report.report
+                    create_report_with_files(order.id, upload_report.attributes.path, upload_report.zip_pictures.path)
+                else:
+                    if upload_report.landmarks:
+                        order.landmarks = upload_report.landmarks
+                        order.save()
+                    if upload_report.report:
+                        report = Report(name='report')
+                        report.pdf = upload_report.report
+                        report.save()
+                        order.report = report
+                        order.save()
+                if upload_report.pre_stls:
+                    create_pre_planning_with_files(order.id, upload_report.pre_stls.path)
+
+
 
 
     return render(request, 'createOrder.html', {'search_patient_form': search_patient_form,
@@ -142,7 +169,8 @@ def create_order(request, patient_id=None, surgeon_id=None):
                                                 'patient_search_results': patient_search_results,
                                                 'surgeon_search_results': surgeon_search_results,
                                                 'patient': patient,
-                                                'surgeon': surgeon})
+                                                'surgeon': surgeon,
+                                                'has_properties': has_properties, })
 
 
 #TODO: Complete this view
@@ -261,8 +289,6 @@ def home(request):
     return HttpResponseRedirect(reverse('login'))
 
 
-def test(request):
-    return render(request, 'test3d.html')
 
 
 @login_required
@@ -442,6 +468,43 @@ def create_report_with_files(order_id, xlsx_path, zip_path):
         except ObjectDoesNotExist:
             pass
 
+
+def create_guide_with_files(order_id, zip_path):
+    zip_file = ZipFile(zip_path)
+    order = Order.objects.get(id=order_id)
+    pictures_root = MEDIA_ROOT+'/guide_stl_files/order'+str(order_id)+'/guide'+str(order.guide_set.all().count())
+    pictures_url = MEDIA_URL+'guide_stl_files/order'+str(order_id)+'/guide'+str(order.guide_set.all().count())
+    zip_file.extractall(pictures_root)
+    guide = Guide(order=order, name='temp_name', description='temp_description')
+    guide.save()
+    for f in listdir(pictures_root.replace('\\', '/')):
+        stl_file = STLFile(name=f, guide=guide, file=pictures_url+'/'+f)
+        stl_file.save()
+
+
+def create_pre_planning_with_files(order_id, zip_path):
+    zip_file = ZipFile(zip_path)
+    order = Order.objects.get(id=order_id)
+    pictures_root = MEDIA_ROOT+'/preplanning_stl_files/order'+str(order_id)+'/preplanning'+str(order.preplanning_set.all().count())
+    pictures_url = MEDIA_URL+'guide_stl_files/order'+str(order_id)+'/preplanning'+str(order.preplanning_set.all().count())
+    zip_file.extractall(pictures_root)
+    preplanning = PrePlanning(order=order, name='temp_name', description='temp_description')
+    preplanning.save()
+    for f in listdir(pictures_root.replace('\\', '/')):
+        stl_file = STLFile(name=f, pre_planning=preplanning, file=pictures_url+'/'+f)
+        stl_file.save()
+
+
+def test(request):
+    upload_report = UploadReport.objects.get(id=23)
+    path = upload_report.guide_stls.path
+    pictures_root = MEDIA_ROOT+'/guide_stl_files/order'+str(14)+'/guide'+str(0)
+    pictures_url = MEDIA_URL+'/guide_stl_files/order'+str(14)+'/guide'+str(0)
+    x = 0
+    for f in listdir(pictures_root.replace('\\', '/')):
+        print f
+        x = f
+    return HttpResponseRedirect(pictures_url+'/'+x)
 
 
 @login_required
