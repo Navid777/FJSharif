@@ -159,8 +159,7 @@ def create_order(request, patient_id=None, surgeon_id=None, has_properties=False
                         order.save()
                 if upload_report.pre_stls:
                     create_pre_planning_with_files(order.id, upload_report.pre_stls.path)
-
-
+                return HttpResponseRedirect(reverse('manage_orders'))
 
 
     return render(request, 'createOrder.html', {'search_patient_form': search_patient_form,

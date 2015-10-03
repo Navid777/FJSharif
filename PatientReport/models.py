@@ -9,6 +9,7 @@ class Proficiency(models.Model):
     name = models.CharField(max_length=200, unique=True)
     abbreviation = models.CharField(max_length=50, unique=True)
     proficient_title = models.CharField(max_length=50, unique=True)
+    parent = models.ForeignKey('self', null=True, blank=True)
     
     def __unicode__(self):
         return self.name
@@ -18,7 +19,7 @@ class Surgeon(models.Model):
     national_code = models.CharField(max_length=100, unique=True, null=True, blank=True)
     picture = models.ImageField(null=True, blank=True)
     medical_id = models.CharField(max_length=100, null=True, blank=True, unique=True)
-    proficiency = models.ForeignKey(Proficiency)
+    proficiency = models.ManyToManyField(Proficiency)
     address = models.CharField(max_length=400, null=True, blank=True)
     office_number = models.CharField(max_length=20, null=True, blank=True)
     mobile_number = models.CharField(max_length=20, null=True, blank=True)
